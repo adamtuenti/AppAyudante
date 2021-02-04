@@ -51,6 +51,10 @@ const routes: Routes = [
   {
     path: 'crear-publicacion',
     loadChildren: () => import('./folder/crear-publicacion/crear-publicacion.module').then( m => m.CrearPublicacionPageModule)
+  },
+  {
+    path: 'mis-publicaciones',
+    loadChildren: () => import('./folder/mis-publicaciones/mis-publicaciones.module').then( m => m.MisPublicacionesPageModule)
   }
 ];
 
