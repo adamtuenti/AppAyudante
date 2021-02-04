@@ -35,6 +35,14 @@ const routes: Routes = [
   {
     path: 'publicaciones',
     loadChildren: () => import('./folder/publicaciones/publicaciones.module').then( m => m.PublicacionesPageModule)
+  },
+  {
+    path: 'usuario-detalle/:id',
+    loadChildren: () => import('./folder/usuario-detalle/usuario-detalle.module').then( m => m.UsuarioDetallePageModule)
+  },
+  {
+    path: 'publicaciones-materia',
+    loadChildren: () => import('./folder/publicaciones-materia/publicaciones-materia.module').then( m => m.PublicacionesMateriaPageModule)
   }
 ];
 

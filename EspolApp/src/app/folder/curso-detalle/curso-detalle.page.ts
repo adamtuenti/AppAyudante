@@ -35,6 +35,8 @@ export class CursoDetallePage implements OnInit {
   }
 
   getDatos(){
+    // this.ayudanteService.getAyudanteMateria(this.id).subscribe(res=> this.ayudantes = res);
+    // console.log(this.ayudantes)
 
     for(let i= 0; i<this.ayudantes.length; i++){
       if(this.ayudantes[i].Materia == this.id){

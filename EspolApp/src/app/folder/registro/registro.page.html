@@ -35,15 +35,19 @@
 
         <ion-item>
           <ion-label><ion-icon name="call-outline"></ion-icon> <ion-text color="danger"></ion-text></ion-label>
-          <ion-input placeholder="Telefono" name="telefono" type='number' ngModel required></ion-input>
+          <ion-input placeholder="Telefono" name="telefono" type='text' ngModel required></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label><ion-icon name="card-outline"></ion-icon> <ion-text color="danger"></ion-text></ion-label>
-          <ion-input placeholder="Matricula" name="matricula" type='text' minlength = '10' maxlength = '10' pattern="\d" ngModel required></ion-input>
+          <ion-input placeholder="Matricula" name="matricula" type='text' maxlength = '9' ngModel required></ion-input>
         </ion-item>
 
+
+
         <!-- <ion-item>
+
+          pattern="\d" 
             <ion-label>Rol</ion-label>
             <ion-select placeholder="" name="rol" ngModel required>   
               <ion-select-option  value="profesor">Profesor </ion-select-option>

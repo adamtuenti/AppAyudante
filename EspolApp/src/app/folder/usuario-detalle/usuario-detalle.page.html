@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-menu-button>
+      </ion-menu-button>
+      <ion-title>{{usuario.Nombre}} {{usuario.Apellido}}</ion-title>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-img src="{{usuario.FotoPerfil}}"></ion-img>
+    <!-- <ion-card-header>
+      <ion-card-title>Correo: {{usuario.Correo}}</ion-card-title>
+    </ion-card-header> -->
+
+    <ion-item>
+      <a href= 'https://api.whatsapp.com/send?phone=+593984870784'><ion-icon name="logo-whatsapp" size="large" color="success" style="margin-right: 8px;"></ion-icon></a>
+      <ion-label>    Telefono: {{usuario.Telefono}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+
+      
+      <ion-icon name="mail-outline" size="large" color="success" style="margin-right: 8px;"></ion-icon>
+     
+      
+      <ion-label>Correo: {{usuario.Correo}}</ion-label>
+    </ion-item>
+
+    
+  </ion-card>
+</ion-content>
+<style>
+  ion-img {     
+    width: 35%;
+    height: 21%;
+    margin: auto;
+    display: block;
+    border-radius: 10px;
+    border-color: aquamarine;
+  }
+</style>

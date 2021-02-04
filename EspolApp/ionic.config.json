@@ -1,5 +1,8 @@
 {
   "name": "eduApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }

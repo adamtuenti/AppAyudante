@@ -3,6 +3,10 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Ayudantes } from '../models/ayudantes';
+// import firebase from 'firebase/app';
+// import 'firebase/firestore';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +16,7 @@ export class AyudantesService {
   private ayduantesCollection: AngularFirestoreCollection <Ayudantes>;
   private ayudantes: Observable<Ayudantes[]>;
 
-  constructor(firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore) {
     this.ayudantesCollection = firestore.collection('Ayudantes');
     this.ayudantes = this.ayudantesCollection.snapshotChanges().pipe(map(
       actions =>{
@@ -43,4 +47,11 @@ export class AyudantesService {
   removeAyudante(id:string){
     return this.ayudantesCollection.doc(id).delete();
  }
+
+
+ getAyudanteMateria(materia:string){
+   return this.ayudantesCollection.snapshotChanges().where("Materia", "==", materia).get();
+ }
+
+
 }

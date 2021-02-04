@@ -17,20 +17,26 @@
     </ion-segment-button>
     
     <ion-segment-button value="actividades" layout="icon-start" [routerLink]="['/cursos']" routerDirection="root">
-      <ion-icon name="library-outline" size="large"></ion-icon> <ion-label>Cursos</ion-label>
+      <ion-icon name="people-outline" size="large"></ion-icon> <ion-label>Ayudantes</ion-label>
     </ion-segment-button>
 
    
   </ion-segment>
+
 
   <ion-list *ngIf="!getDatos()">
     <ng-container *ngFor="let ayudante of ayudantes">
     <ng-container *ngIf="ayudante.Materia == id">
     <ng-container *ngFor="let usuario of usuarios">
       
-      <ion-item *ngIf="usuario.id == ayudante.Usuario">
-        {{usuario.Nombre}}
-        {{usuario.Apellido}}
+      <ion-item *ngIf="usuario.id == ayudante.Usuario" [routerLink]="['/usuario-detalle',usuario.id]">
+
+        <ion-thumbnail slot="start" slot="start">
+          <img src="{{usuario.FotoPerfil}}" alet="foto">
+        </ion-thumbnail>
+        <ion-card-title>{{usuario.Nombre}}
+          {{usuario.Apellido}}</ion-card-title>
+        
       </ion-item>
     
     </ng-container>

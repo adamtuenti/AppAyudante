@@ -67,9 +67,14 @@ export class RegistroPage implements OnInit {
 
   async RegistrarUser(form):Promise<void>{
     this.presentLoading("Espere por favor...");
+    var telefono = form.value.telefono;
+    if(telefono.length==10){
+      telefono = '+593' + telefono.slice(1,telefono.length);
+    }
+    console.log(telefono)
     
     
-    this.guardarArchivo(form.value.email, form.value.password,form.value.nombre, form.value.apellido, form.value.matricula, form.value.telefono);
+    this.guardarArchivo(form.value.email, form.value.password,form.value.nombre, form.value.apellido, form.value.matricula, telefono);
   }
 
   guardarArchivo(email:string, password:string, nombre:string ,apellido:string, matricula: string, telefono: string){
