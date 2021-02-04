@@ -5,38 +5,53 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { rejects } from 'assert';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import { UsuarioService } from './usuario.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   constructor(private router: Router,
-              private firestore: AngularFirestore) { }
+              private firestore: AngularFirestore,
+              private usuarioService: UsuarioService) { }
   loginUser(email:string, password:string):Promise<firebase.auth.UserCredential>{
     
-    return firebase.auth().signInWithEmailAndPassword(email, password);
+    return new Promise ((resolve, reject)=>{ 
+      firebase.auth().signInWithEmailAndPassword(email, password).then( res=>{ 
+        localStorage.setItem('email', email);
+        localStorage.setItem('userId', res.user.uid);
+
+        this.usuarioService.getUsuario(res.user.uid).subscribe(res => {localStorage.setItem('Rol',res.Rol)});
+
+      resolve(res);   
+      }).catch(err => reject(err))
+    })
   }
 
-  signupnUser(email:string, password:string,nombre:string, apellido:string, rol:string):Promise<any>{
+  signupnUser(email:string, password:string,nombre:string, apellido:string, matricula: string, telefono: string, fotoPerfil: string, fotoCarnet: string):Promise<any>{
     
     return new Promise ((resolve, reject)=>{
       firebase.auth().createUserWithEmailAndPassword(email, password).then( res=>{ 
-        localStorage.setItem('email', email);
         
-        if(rol =="estudiante"){
-        this.firestore.collection('Estudiantes').doc(res.user.uid).set({
-          nombre: nombre,
-          apellido: apellido,
-          email:email
+        
+      
+        this.firestore.collection('Usuarios').doc(res.user.uid).set({
+          Apellido: apellido,
+          Correo: email,
+          FotoPerfil: fotoPerfil,
+          Foto: fotoCarnet,
+          Matricula: matricula,
+          Nombre: nombre,
+          Premium: false,
+          Publicaciones: 0,
+          Rol: 'estudiante',
+          Telefono: telefono,
+          Universidad: 'Espol',
+          Verificacion: false
+
         });
-        }
-        if(rol =="profesor"){
-          this.firestore.collection('Profesores').doc(res.user.uid).set({
-            nombre: nombre,
-            apellido: apellido,
-            email:email
-          });
-          }
+    
+       
 
 
       resolve(res);

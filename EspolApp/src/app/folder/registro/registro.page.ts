@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { AngularFireStorage } from 'angularfire2/storage';
+
+import { LoadingController } from '@ionic/angular';
+import { MensajeErrorService } from 'src/app/services/mensaje-error.service';
 
 @Component({
   selector: 'app-registro',
@@ -14,36 +18,126 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
-1
-  constructor(private authService:AuthService,
+  file: File;
+  file1: File;
+  imageSrc: string | ArrayBuffer;
+  loading: HTMLIonLoadingElement;
+  constructor(private angularFireStorage: AngularFireStorage,
+              private authService:AuthService,
               private router: Router,
+              private mensajeErrorService: MensajeErrorService,
               private alertCtrt: AlertController,
-              firestore: AngularFirestore) { }
+              public loadingController: LoadingController,
+             ) { }
 
   ngOnInit() {
+    
+  } 
+
+  async presentLoading(mensaje: string) {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: mensaje,
+      //duration: 2000
+    });
+    return this.loading.present();
+  }
+
+  readURL(event): void {
+    if (event.target.files && event.target.files[0]) {
+        this.file = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.onload = e => this.imageSrc = reader.result;
+
+        reader.readAsDataURL(this.file);
+    }
+  }
+
+  readURL1(event): void {
+    if (event.target.files && event.target.files[0]) {
+        this.file1 = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.onload = e => this.imageSrc = reader.result;
+
+        reader.readAsDataURL(this.file1);
+    }
   }
 
   async RegistrarUser(form):Promise<void>{
-    this.authService.signupnUser(form.value.email, form.value.password,form.value.nombre, form.value.apellido, form.value.rol).
+    this.presentLoading("Espere por favor...");
+    
+    
+    this.guardarArchivo(form.value.email, form.value.password,form.value.nombre, form.value.apellido, form.value.matricula, form.value.telefono);
+  }
+
+  guardarArchivo(email:string, password:string, nombre:string ,apellido:string, matricula: string, telefono: string){
+    
+    var storageRef = this.angularFireStorage.storage.ref()
+
+    var storageRef1 = this.angularFireStorage.storage.ref()
+    
+    storageRef.child(this.file.name).put(this.file)
+    .then(
+            data=>{
+                    data.ref.getDownloadURL().then(
+                        downloadURL => {
+                          
+                            storageRef1.child(this.file1.name).put(this.file1)
+                            .then(
+                              data=>{data.ref.getDownloadURL().then(
+                                downloadURL1 =>this.RegistrarUserCompleto(email, password, nombre ,apellido, matricula, telefono, downloadURL, downloadURL1)  
+                                )}
+                            ).catch(err=>{this.loading.dismiss(), this.failedAlert("Error al cargar la foto del carnet, intentelo de nuevo")});
+                            
+                          
+                      
+                        }
+                    ).catch(err=>{this.loading.dismiss(), this.failedAlert("Error al cargar la foto de perfil, intentelo de nuevo")});
+                    
+
+            }
+    )     
+
+
+  }
+
+ 
+
+  
+  async RegistrarUserCompleto(email:string, password:string, nombre:string ,apellido:string, matricula: string, telefono: string, downloadURL:string , downloadURL1:String){
+    this.authService.signupnUser(email, password,nombre ,apellido, matricula, telefono, downloadURL, downloadURL1).
     then(
       auth=>{
-      if(form.value.rol == "profesor"){
-        this.router.navigateByUrl("/grupos-estudios")
-      }
-      if(form.value.rol == "estudiante"){
-        this.router.navigateByUrl("/grupos-estudios-estudiantes")
-      }
-
-      }
-      
-      
+        this.loading.dismiss();
+        
+          this.router.navigateByUrl("/home")
+       
+       
+      }  
     ).catch(async error => {
-      const alert = await this.alertCtrt.create({
-        message: "Algo salio mal, intentelo de nuevo",
-        buttons:[{text: 'ok', role: 'cancel'}],      
-      });
-      await alert.present();
+      this.loading.dismiss();
+      var mensaje=error.code.split('/')[1];
+      const presentarMensaje = this.mensajeErrorService.AuthErrorCodeSpanish(mensaje);
+      this.failedAlert(presentarMensaje)
     })
+  }
+
+
+
+  async failedAlert(text: string) {
+    const alert = await this.alertCtrt.create({
+     cssClass: 'my-custom-class',
+     header: text,
+    buttons: [{
+    text: 'OK',
+      handler: () => {
+        
+      }
+    }]   
+    });
+    await alert.present();
   }
 
 }

@@ -3,7 +3,7 @@
     <ion-buttons>
       <ion-menu-button>
       </ion-menu-button>
-      <ion-title>Home</ion-title>
+      <ion-title>Cursos</ion-title>
     </ion-buttons>    
   </ion-toolbar>
 </ion-header>
@@ -13,7 +13,7 @@
   <ion-segment color="tertiary" value="recursos">
 
     <ion-segment-button value="recursos" layout="icon-start" [routerLink]="['/publicaciones']" routerDirection="root">
-      <ion-icon name="newspaper-outline" size="large"></ion-icon> <ion-label>Publicaciones Generales</ion-label>
+      <ion-icon name="newspaper-outline" size="large"></ion-icon> <ion-label>Publicaciones</ion-label>
     </ion-segment-button>
     
     <ion-segment-button value="actividades" layout="icon-start" [routerLink]="['/cursos']" routerDirection="root">
@@ -22,5 +22,20 @@
 
    
   </ion-segment>
+
+
+  <ion-card *ngFor="let curso of cursos" scrollable class = "item">
+    <ion-item [routerLink]="['/curso-detalle',curso.id]" >
+
+      <ion-thumbnail slot="start" slot="start">
+        <img src="{{curso.Imagen}}" alet="foto">
+      </ion-thumbnail>
+      <ion-card-title>{{curso.Nombre}}</ion-card-title>
+    </ion-item>
+  
+
+  </ion-card>
+
+  
 
 </ion-content>

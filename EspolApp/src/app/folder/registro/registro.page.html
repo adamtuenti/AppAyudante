@@ -1,53 +1,117 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-<ion-card>
+  <ion-card>
     <ion-list>
-    <ion-img src="../../assets/logo.PNG" alt="hola"></ion-img>
+      <ion-img src="../../assets/log.png"></ion-img>
     </ion-list>
-  <form #form="ngForm" (ngSubmit)="RegistrarUser(form)">
-    <ion-list>   
-         
-      <ion-item>
-        <ion-label><ion-icon name="person-outline"></ion-icon><ion-text color="danger"></ion-text></ion-label>
-        <ion-input required placeholder="Nombres" name="nombre" type='text' ngModel required></ion-input>
-      </ion-item>
 
-      <ion-item>
-        <ion-label><ion-icon name="person-outline"></ion-icon><ion-text color="danger"></ion-text></ion-label>
-        <ion-input required placeholder="Apellidos" name="apellido" type='text' ngModel required></ion-input>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label><ion-icon name="mail-outline"></ion-icon><ion-text color="danger"></ion-text></ion-label>
-        <ion-input required placeholder="email" name="email" type='email' ngModel required></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label><ion-icon name="key-outline"></ion-icon> <ion-text color="danger"></ion-text></ion-label>
-        <ion-input placeholder="contraseña" name="password" type='password' ngModel required></ion-input>
-      </ion-item>
-
-      <ion-item>
-          <ion-label>Cargo</ion-label>
-          <ion-select placeholder="" name="rol" ngModel required>   
-            <ion-select-option  value="profesor">Profesor </ion-select-option>
-            <ion-select-option  value="estudiante">Estudiante </ion-select-option> 
-          </ion-select>
+    <form #form="ngForm" (ngSubmit)="RegistrarUser(form)">
+      <ion-list>   
+          
+        <ion-item>
+          <ion-label><ion-icon name="person-outline"></ion-icon><ion-text color="danger"></ion-text></ion-label>
+          <ion-input required placeholder="Nombre" name="nombre" type='text' ngModel required></ion-input>
         </ion-item>
 
-    </ion-list>
+        <ion-item>
+          <ion-label><ion-icon name="person-outline"></ion-icon><ion-text color="danger"></ion-text></ion-label>
+          <ion-input required placeholder="Apellido" name="apellido" type='text' ngModel required></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label><ion-icon name="mail-outline"></ion-icon><ion-text color="danger"></ion-text></ion-label>
+          <ion-input required placeholder="Correo" name="email" type='email' ngModel required></ion-input>
+        </ion-item>
 
-    <div class="ion-padding">
-      <ion-button  shape="round" type="submit"  [disabled]="form.invalid" expand="block">
-        Registrar
-      </ion-button>
-      <p class="small-text" routerLink="/login" routerDirection="root">Ya tengo cuenta</p>
+        <ion-item>
+          <ion-label><ion-icon name="key-outline"></ion-icon> <ion-text color="danger"></ion-text></ion-label>
+          <ion-input placeholder="Contraseña" name="password" type='password' ngModel required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><ion-icon name="call-outline"></ion-icon> <ion-text color="danger"></ion-text></ion-label>
+          <ion-input placeholder="Telefono" name="telefono" type='number' ngModel required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><ion-icon name="card-outline"></ion-icon> <ion-text color="danger"></ion-text></ion-label>
+          <ion-input placeholder="Matricula" name="matricula" type='text' minlength = '10' maxlength = '10' pattern="\d" ngModel required></ion-input>
+        </ion-item>
+
+        <!-- <ion-item>
+            <ion-label>Rol</ion-label>
+            <ion-select placeholder="" name="rol" ngModel required>   
+              <ion-select-option  value="profesor">Profesor </ion-select-option>
+              <ion-select-option  value="estudiante">Estudiante </ion-select-option> 
+            </ion-select>
+          </ion-item> -->
+        
+        
+        
+        <ion-item>
+          <ion-label><ion-icon name="image-outline"></ion-icon> Seleccione foto de perfil <ion-text color=""></ion-text></ion-label>
+          <ion-input type='file' accept="image/*" id="perfilFoto" name="foto" (change)="readURL($event);" class="fileInput" ngModel required></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label><ion-icon name="image-outline"></ion-icon> Foto del carnet <ion-text color=""></ion-text></ion-label>
+          <ion-input type='file' accept="image/*" id="carnetFoto" name="foto" (change)="readURL1($event);" class="fileInput" ngModel required></ion-input>
+        </ion-item>
+
+        <!-- <ion-item *ngIf="imageSrc != null">
+        <ion-grid>
+          <ion-row> 
+            <ion-col> </ion-col>
+            <ion-col>
+            <ion-label class="perfil"><ion-text>Foto de perfil</ion-text></ion-label>
+              <br>
+              <ion-thumbnail>
+                  <ion-img id="blah" *ngIf="imageSrc != null" [src]="imageSrc" alt="your image"></ion-img>
+                </ion-thumbnail>
+            </ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>  
+        </ion-item> -->
+      </ion-list> 
+
+      <div class="ion-padding">
+        <ion-button type="submit"  [disabled]="form.invalid" expand="block">
+          Registrar
+        </ion-button>
+        <p class="small-text" routerLink="/login" routerDirection="root">Ya tengo cuenta</p>
       </div>
-  </form>
+    </form>
   </ion-card>
 </ion-content>
+
+<style>
+#myFileInput{
+  position: absolute;
+  opacity: 0;
+}
+  .perfil {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+  }
+  .item ion-thumbnail {
+    min-width: 10rem;    
+    min-height: 10rem;
+    /* img {
+      max-width: 10rem;    
+      min-width: 10rem;
+    }   */
+  }
+  ion-img {     
+      width: 60%;
+      margin: auto;
+      display: block;
+  }
+</style>

@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-menu-button>
+      </ion-menu-button>
+      <ion-title>Cursos {{id}}</ion-title>
+    </ion-buttons>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-segment color="tertiary" value="recursos">
+
+    <ion-segment-button value="recursos" layout="icon-start" [routerLink]="['/recursos',grupo]" routerDirection="root">
+      <ion-icon name="newspaper-outline" size="large"></ion-icon> <ion-label>Publicaciones</ion-label>
+    </ion-segment-button>
+    
+    <ion-segment-button value="actividades" layout="icon-start" [routerLink]="['/cursos']" routerDirection="root">
+      <ion-icon name="library-outline" size="large"></ion-icon> <ion-label>Cursos</ion-label>
+    </ion-segment-button>
+
+   
+  </ion-segment>
+
+  <ion-list *ngIf="!getDatos()">
+    <ng-container *ngFor="let ayudante of ayudantes">
+    <ng-container *ngIf="ayudante.Materia == id">
+    <ng-container *ngFor="let usuario of usuarios">
+      
+      <ion-item *ngIf="usuario.id == ayudante.Usuario">
+        {{usuario.Nombre}}
+        {{usuario.Apellido}}
+      </ion-item>
+    
+    </ng-container>
+    </ng-container>
+    </ng-container>
+
+
+  </ion-list>
+
+  <ng-container *ngIf="getDatos()">
+    <br><br><br><br><br><br>
+    <div class="ion-text-center">
+      <ion-text color="medium">
+        <p>No existen grupos por mostrar.</p>
+      </ion-text>  
+    </div>
+  </ng-container>
+
+
+</ion-content>

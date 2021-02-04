@@ -23,6 +23,18 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./folder/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'cursos',
+    loadChildren: () => import('./folder/cursos/cursos.module').then( m => m.CursosPageModule)
+  },
+  {
+    path: 'curso-detalle/:id',
+    loadChildren: () => import('./folder/curso-detalle/curso-detalle.module').then( m => m.CursoDetallePageModule)
+  },
+  {
+    path: 'publicaciones',
+    loadChildren: () => import('./folder/publicaciones/publicaciones.module').then( m => m.PublicacionesPageModule)
   }
 ];
 
