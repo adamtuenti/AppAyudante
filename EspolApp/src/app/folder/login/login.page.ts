@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
     then(
       ()=>{
         localStorage.setItem('email',form.value.email),
-        this.router.navigateByUrl("/grupos-estudios")
+        this.router.navigateByUrl("/home")
     
     },
       
