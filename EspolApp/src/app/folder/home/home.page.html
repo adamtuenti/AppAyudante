@@ -21,4 +21,25 @@
     </ion-segment-button>
   </ion-segment>
 
+  <ion-card *ngFor="let publicacion of publicaciones">
+    <ion-card-header>
+      <ion-card-title>{{publicacion.Titulo}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{publicacion.Descripcion}}
+    </ion-card-content>
+    <!--<ion-item [routerLink]="['/curso-detalle',curso.id]" > 
+    </ion-item>-->  
+  </ion-card>
+
+
+
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/grupos-estudios-create">
+     <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
