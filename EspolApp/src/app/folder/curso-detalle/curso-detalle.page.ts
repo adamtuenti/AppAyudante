@@ -16,6 +16,7 @@ export class CursoDetallePage implements OnInit {
   usuarios:Usuarios[] = [];
   ayudantes:Ayudantes[] = [];
   id:string;
+  nombre:string;
   resultado = [];
   constructor(private activateRoute: ActivatedRoute,
               private ayudanteService: AyudantesService,
@@ -24,8 +25,11 @@ export class CursoDetallePage implements OnInit {
   ngOnInit() {
 
     this.activateRoute.paramMap.subscribe(paramMap => {
+      console.log(paramMap)
       const idCurso = paramMap.get('id');
+     // const nombreCurso = paramMap.get('Nombre');
       this.id = idCurso;
+     // this.nombre = nombreCurso;
       //this.actividadService.getActividad(idActividad).subscribe(res => this.actividad =res);
       
     });

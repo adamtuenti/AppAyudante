@@ -20,4 +20,15 @@ export class PerfilPage implements OnInit {
 
   }
 
+  readURL(event): void {
+    if (event.target.files && event.target.files[0]) {
+        this.file = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.onload = e => this.imageSrc = reader.result;
+
+        reader.readAsDataURL(this.file);
+    }
+  }
+
 }

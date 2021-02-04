@@ -43,6 +43,10 @@ const routes: Routes = [
   {
     path: 'publicaciones-materia',
     loadChildren: () => import('./folder/publicaciones-materia/publicaciones-materia.module').then( m => m.PublicacionesMateriaPageModule)
+  },
+  {
+    path: 'perfil-update',
+    loadChildren: () => import('./folder/perfil-update/perfil-update.module').then( m => m.PerfilUpdatePageModule)
   }
 ];
 

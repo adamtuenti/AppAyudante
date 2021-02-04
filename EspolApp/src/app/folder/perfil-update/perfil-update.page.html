@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Actualizacion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form #form="ngForm" (ngSubmit)="UpdateUser(form)">
+    <ion-list>   
+        
+  
+
+ 
+      
+
+
+
+      <ion-item>
+        <ion-label><ion-icon name="call-outline"></ion-icon> <ion-text color="danger"></ion-text></ion-label>
+        <ion-input placeholder="{{user.Telefono}}" name="telefono" type='text' ngModel></ion-input>
+      </ion-item>
+
+      
+      
+      <ion-item>
+
+                  <ion-img id="blah" [src]="image" alt="your image" style="margin-top:7.5px;margin-bottom: 7.5px;height: 350px;width: 350px;"></ion-img>
+         
+        </ion-item>
+
+      <ion-item>
+        <ion-label><ion-icon name="image-outline"></ion-icon>Cambiar foto<ion-text color=""></ion-text></ion-label>
+        <ion-input type='file' accept="image/*" id="perfilFoto" name="foto" (change)="readURL($event);" class="fileInput" ngModel></ion-input>
+      </ion-item>
+
+
+      
+
+
+    </ion-list> 
+
+    <div class="ion-padding">
+      <ion-button type="submit"  [disabled]="form.invalid" expand="block">
+        Guardar
+      </ion-button>
+      
+    </div>
+  </form>
+
+</ion-content>
