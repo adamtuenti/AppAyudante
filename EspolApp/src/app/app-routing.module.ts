@@ -47,6 +47,10 @@ const routes: Routes = [
   {
     path: 'perfil-update',
     loadChildren: () => import('./folder/perfil-update/perfil-update.module').then( m => m.PerfilUpdatePageModule)
+  },
+  {
+    path: 'crear-publicacion',
+    loadChildren: () => import('./folder/crear-publicacion/crear-publicacion.module').then( m => m.CrearPublicacionPageModule)
   }
 ];
 
