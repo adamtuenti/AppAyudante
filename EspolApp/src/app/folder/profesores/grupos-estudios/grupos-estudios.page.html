@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-menu-button color = "primary">
+      </ion-menu-button>
+      <ion-title>Grupos</ion-title>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <ng-container *ngFor="let grupo of grupos | async">
+    <ion-card *ngIf="grupo.Profesor == profesor">
+        <ion-item>
+          <ion-label routerLink="/actividades" routerDirection="root">{{grupo.Materia}}</ion-label> 
+          <ion-button fill="outline" size='small'>
+            <ion-icon name="create"></ion-icon >
+          </ion-button>
+          <ion-button fill="outline" slot="end" size='small' color="danger" >
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-card-content >
+        <p>{{grupo.Materia}}</p>
+        <p> {{grupo.Paralelo}}</p>
+        </ion-card-content>
+      </ion-card>
+  </ng-container>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/login']">
+     <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>

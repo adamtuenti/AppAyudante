@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+    <ion-list>
+    <ion-img src="../../assets/logo.PNG" alt="hola"></ion-img>
+    </ion-list>
+    
+    <form #form="ngForm" (ngSubmit)="loginUser(form)">
+      <ion-list>   
+        
+        <ion-item>
+          <ion-label><ion-icon name="mail-outline"></ion-icon><ion-text color="danger"></ion-text></ion-label>
+          <ion-input required placeholder="email" name="email" type='email' ngModel required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><ion-icon name="key-outline"></ion-icon> <ion-text color="danger"></ion-text></ion-label>
+          <ion-input placeholder="password" name="password" type='password' ngModel required></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <div class="ion-padding">
+        <ion-button  shape="round" type="submit"  [disabled]="form.invalid" expand="block">
+          Ingresar
+        </ion-button>
+        <p (click)="presentResetPassword()" class="small-text">Restablecer contraseña</p>
+        <p class="small-text" routerLink="/registro" routerDirection="root">Crear cuenta</p>
+      </div>
+    </form>
+  </ion-card>
+</ion-content>

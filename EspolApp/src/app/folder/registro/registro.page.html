@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card>
+    <ion-list>
+    <ion-img src="../../assets/logo.PNG" alt="hola"></ion-img>
+    </ion-list>
+  <form #form="ngForm" (ngSubmit)="RegistrarUser(form)">
+    <ion-list>   
+         
+      <ion-item>
+        <ion-label><ion-icon name="person-outline"></ion-icon><ion-text color="danger"></ion-text></ion-label>
+        <ion-input required placeholder="Nombres" name="nombre" type='text' ngModel required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><ion-icon name="person-outline"></ion-icon><ion-text color="danger"></ion-text></ion-label>
+        <ion-input required placeholder="Apellidos" name="apellido" type='text' ngModel required></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label><ion-icon name="mail-outline"></ion-icon><ion-text color="danger"></ion-text></ion-label>
+        <ion-input required placeholder="email" name="email" type='email' ngModel required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><ion-icon name="key-outline"></ion-icon> <ion-text color="danger"></ion-text></ion-label>
+        <ion-input placeholder="contraseña" name="password" type='password' ngModel required></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label>Cargo</ion-label>
+          <ion-select placeholder="" name="rol" ngModel required>   
+            <ion-select-option  value="profesor">Profesor </ion-select-option>
+            <ion-select-option  value="estudiante">Estudiante </ion-select-option> 
+          </ion-select>
+        </ion-item>
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button  shape="round" type="submit"  [disabled]="form.invalid" expand="block">
+        Registrar
+      </ion-button>
+      <p class="small-text" routerLink="/login" routerDirection="root">Ya tengo cuenta</p>
+      </div>
+  </form>
+  </ion-card>
+</ion-content>

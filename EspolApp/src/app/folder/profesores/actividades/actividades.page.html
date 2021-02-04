@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-menu-button color = "primary">
+      </ion-menu-button>
+      <ion-title>Actividades</ion-title>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+
+<ion-segment color="primary">
+
+  <ion-segment-button  layout="icon-bottom">
+   <ion-icon name="book-outline" size="small"></ion-icon>
+  </ion-segment-button>
+  
+  <ion-segment-button checked layout="icon-bottom">
+    <ion-icon name="document-attach-outline" size="small"></ion-icon>
+  </ion-segment-button>
+
+  <ion-segment-button layout="icon-bottom">
+   <ion-icon name="create-outline" size="small"></ion-icon>
+  </ion-segment-button>
+  
+  <ion-segment-button layout="icon-bottom">
+    <ion-icon name="people-outline" size="small"></ion-icon>
+  </ion-segment-button>
+</ion-segment>
+
+
+<ion-card *ngFor="let actividad of actividades | async">
+    <ion-item>
+      <ion-label routerLink="/grupos-estudios" routerDirection="root">{{actividad.titulo}}</ion-label> 
+      <ion-button fill="outline" size='small'>
+        <ion-icon name="create"></ion-icon >
+      </ion-button>
+      <ion-button fill="outline" slot="end" size='small' color="danger" >
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-card-content >
+     <p>{{actividad.descripcion}}</p>
+     <p> {{actividad.fechaLimite}}</p>
+    </ion-card-content>
+  </ion-card>
+
+ <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/login']">
+     <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
