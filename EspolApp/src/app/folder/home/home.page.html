@@ -10,13 +10,13 @@
 
 <ion-content>
 
-  <ion-segment color="tertiary" value="recursos">
+  <ion-segment color="tertiary" value="publicaciones">
 
-    <ion-segment-button value="recursos" layout="icon-start" [routerLink]="['/publicaciones']" routerDirection="root">
+    <ion-segment-button value="publicaciones" layout="icon-start" [routerLink]="['/publicaciones']" routerDirection="root">
       <ion-icon name="newspaper-outline" size="large"></ion-icon> <ion-label>Publicaciones Generales</ion-label>
     </ion-segment-button>
     
-    <ion-segment-button value="actividades" layout="icon-start" [routerLink]="['/cursos']" routerDirection="root">
+    <ion-segment-button value="cursos" layout="icon-start" [routerLink]="['/cursos']" routerDirection="root">
       <ion-icon name="library-outline" size="large"></ion-icon> <ion-label>Cursos</ion-label>
     </ion-segment-button>
   </ion-segment>
@@ -38,7 +38,7 @@
 
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/grupos-estudios-create">
+    <ion-fab-button routerLink="/">
      <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
