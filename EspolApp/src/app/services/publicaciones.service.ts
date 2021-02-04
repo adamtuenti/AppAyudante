@@ -52,6 +52,20 @@ export class PublicacionesService {
       return this.publicacionesCollection.doc<Publicaciones>(id).valueChanges();
     }
 
+    addPublicaciones( Usuarios:Publicaciones){
+      return this.publicacionesCollection.add({...Usuarios});
+    }
+  
+    updatePublicaciones(id:string, Usuarios:Publicaciones){
+      return this.publicacionesCollection.doc(id).update({...Usuarios});
+    }
+  
+    removePublicaciones(id:string){
+      return this.publicacionesCollection.doc(id).delete();
+   }
+
+
+
 
     getPublicacionesMateria(){
       return this.publicacionesMateria;

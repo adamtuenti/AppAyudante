@@ -1,9 +1,30 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>crear-publicacion</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-menu-button>
+      </ion-menu-button>
+      <ion-title>Publicación</ion-title>
+    </ion-buttons>    
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+
+<form #form="ngForm" (ngSubmit)="crearPublicacion(form)">
+      <ion-list>   
+        
+       <ion-item>
+        <ion-label>Título: </ion-label>
+        <ion-input required placeholder="Título" name="titulo" type='text' ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Descripción: </ion-label>
+        <ion-textarea required placeholder="Descripción" name="descripcion" type='text' ngModel required></ion-textarea>
+      </ion-item>
+      </ion-list>
+
+        <ion-button  style="background-color:aquamarine" shape="round" type="submit"  [disabled]="form.invalid" expand="block">
+          Guardar
+        </ion-button>
+    </form>
 
 </ion-content>
