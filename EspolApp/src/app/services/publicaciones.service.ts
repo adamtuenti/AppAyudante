@@ -70,6 +70,21 @@ export class PublicacionesService {
     getPublicacionesMateria(){
       return this.publicacionesMateria;
     }
+    getPublicacionMateria(id:string){
+      return this.publicacionesMateriaCollection.doc<Publicaciones>(id).valueChanges();
+    }
+
+    addPublicacionesMateria( Usuarios:Publicaciones){
+      return this.publicacionesMateriaCollection.add({...Usuarios});
+    }
+  
+    updatePublicacionesMateria(id:string, Usuarios:Publicaciones){
+      return this.publicacionesMateriaCollection.doc(id).update({...Usuarios});
+    }
+  
+    removePublicacionesMateria(id:string){
+      return this.publicacionesMateriaCollection.doc(id).delete();
+   }
 
 
 

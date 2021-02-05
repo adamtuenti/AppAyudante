@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Component, OnInit } from '@angular/core';
+import { Usuarios } from 'src/app/models/usuarios';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +19,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class LoginPage implements OnInit {
   users: Observable<any[]>;
+  public user: Usuarios=new Usuarios();
   constructor(private authService:AuthService,
               private router: Router,
+              private usuarioService: UsuarioService,
               private alertCtrt: AlertController,
               private firestore: AngularFirestore) { 
                 
@@ -30,8 +35,24 @@ export class LoginPage implements OnInit {
   async loginUser(form):Promise<void>{
    this.authService.loginUser(form.value.email, form.value.password).
     then(
-      ()=>{
-        localStorage.setItem('email',form.value.email),
+      (res)=>{
+         this.usuarioService.getUsuario(res.user.uid).subscribe(res =>
+          {this.user =res; 
+           localStorage.setItem('userId', res.id);
+           localStorage.setItem('email',res.email);
+          localStorage.setItem('Estado',res.Estado)
+          if(localStorage.getItem('Estado')== "P"){
+        this.router.navigateByUrl('/pendiente');}
+          else if(localStorage.getItem('Estado')== "A"){
+        this.router.navigateByUrl('/home');}
+          
+          });
+
+        
+        
+       ;
+
+        
         this.router.navigateByUrl("/home")
     
     },

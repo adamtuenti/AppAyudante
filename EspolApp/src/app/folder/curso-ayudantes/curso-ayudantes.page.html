@@ -10,7 +10,7 @@
 
 <ion-content>
 
-  <ion-segment color="tertiary" value="anuncio">
+  <ion-segment color="tertiary" value="ayudantes">
 
     <ion-segment-button value="anuncios" layout="icon-start" [routerLink]="['/curso-detalle',id, nombreCurso]" routerDirection="root">
       <ion-icon name="megaphone-outline" size="large"></ion-icon> <ion-label>Anuncios</ion-label>
@@ -24,29 +24,36 @@
   </ion-segment>
 
 
-  <ng-container *ngIf="!getDatos()">
-    <ng-container *ngFor="let publicacion of publicaciones">
-      <ion-card *ngIf="publicacion.Materia == id"  [routerLink]="['/curso-detalle-anuncio',publicacion.id]">
-        <ion-card-header>
-          <ion-card-title>{{publicacion.Titulo}}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          {{publicacion.Descripcion}}
-        </ion-card-content>
-
+  <ion-list *ngIf="!getDatos()">
+    <ng-container *ngFor="let ayudante of ayudantes">
+    <ng-container *ngIf="ayudante.Materia == id">
+    <ng-container *ngFor="let usuario of usuarios">
       
-      </ion-card>
+      <ion-item *ngIf="usuario.id == ayudante.Usuario" [routerLink]="['/usuario-detalle',usuario.id]">
+
+        <ion-thumbnail slot="start" slot="start">
+          <img src="{{usuario.FotoPerfil}}" alet="foto">
+        </ion-thumbnail>
+        <ion-card-title>{{usuario.Nombre}}
+          {{usuario.Apellido}}</ion-card-title>
+        
+      </ion-item>
+    
     </ng-container>
-  </ng-container>
+    </ng-container>
+    </ng-container>
+
+
+  </ion-list>
 
   <ng-container *ngIf="getDatos()">
     <br><br><br><br><br><br>
     <div class="ion-text-center">
       <ion-text color="medium">
 
-        <img src="https://i1.wp.com/codigoespagueti.com/wp-content/uploads/2020/04/Yamcha-muerto.png?resize=1200%2C720&quality=80&ssl=1" style="width: 55%; height:72%;" alet="foto">
+        <img src="https://plantillasdememes.com/img/plantillas/maldicion31565656254.png" style="width: 55%; height:72%;" alet="foto">
         
-        <p style="font-size: 25px;">No hay anuncios registrados.</p>
+        <p style="font-size: 25px;">No hay ayudantes registrados.</p>
       </ion-text>  
     </div>
   </ng-container>

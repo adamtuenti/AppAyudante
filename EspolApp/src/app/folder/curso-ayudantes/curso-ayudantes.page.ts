@@ -1,28 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PublicacionesMateria } from 'src/app/models/publicaciones-materia';
-import { PublicacionesService } from 'src/app/services/publicaciones.service';
+import { Ayudantes } from 'src/app/models/ayudantes';
+import { AyudantesService } from 'src/app/services/ayudantes.service';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
-
 @Component({
-  selector: 'app-curso-detalle',
-  templateUrl: './curso-detalle.page.html',
-  styleUrls: ['./curso-detalle.page.scss'],
+  selector: 'app-curso-ayudantes',
+  templateUrl: './curso-ayudantes.page.html',
+  styleUrls: ['./curso-ayudantes.page.scss'],
 })
-export class CursoDetallePage implements OnInit {
-  
+export class CursoAyudantesPage implements OnInit {
+
   usuarios:Usuarios[] = [];
-  publicaciones:PublicacionesMateria[] = [];
+  ayudantes:Ayudantes[] = [];
   nombreCurso: string;
   id:string;
   nombre:string;
-  idEstudiante:string;
 
   resultado = [];
   constructor(private activateRoute: ActivatedRoute,
-              private publicacionesService: PublicacionesService,
+              private ayudanteService: AyudantesService,
               private usuarioService: UsuarioService) { }
 
   ngOnInit() {
@@ -39,7 +37,7 @@ export class CursoDetallePage implements OnInit {
       
     });
 
-    this.publicacionesService.getPublicacionesMateria().subscribe(res=> this.publicaciones = res);
+    this.ayudanteService.getAyudantes().subscribe(res=> this.ayudantes = res);
     this.usuarioService.getUsuarios().subscribe(res => this.usuarios = res);
   }
 
@@ -47,15 +45,17 @@ export class CursoDetallePage implements OnInit {
     // this.ayudanteService.getAyudanteMateria(this.id).subscribe(res=> this.ayudantes = res);
     // console.log(this.ayudantes)
 
-    for(let i= 0; i<this.publicaciones.length; i++){
-      if(this.publicaciones[i].Materia == this.id){
-      
+    for(let i= 0; i<this.ayudantes.length; i++){
+      if(this.ayudantes[i].Materia == this.id){
+        for(let j= 0; j<this.usuarios.length; j++){
+          if(this.usuarios[j].id == this.ayudantes[i].Usuario){
             return false;
           }
+        }
+      }
     }
     return true;
 
 
   }
-
 }

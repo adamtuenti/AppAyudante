@@ -21,7 +21,11 @@ export class AuthService {
         localStorage.setItem('email', email);
         localStorage.setItem('userId', res.user.uid);
 
-        this.usuarioService.getUsuario(res.user.uid).subscribe(res => {localStorage.setItem('Rol',res.Rol)});
+        this.usuarioService.getUsuario(res.user.uid).subscribe(res => {
+          localStorage.setItem('Rol',res.Rol);
+          localStorage.setItem('Estado',res.Estado);
+        
+        });
 
       resolve(res);   
       }).catch(err => reject(err))
@@ -47,7 +51,8 @@ export class AuthService {
           Rol: 'estudiante',
           Telefono: telefono,
           Universidad: 'Espol',
-          Verificacion: false
+         // Verificacion: false,
+          Estado: 'P',
 
         });
     

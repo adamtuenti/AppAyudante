@@ -25,7 +25,7 @@
 
 
   <ion-card *ngFor="let curso of cursos" scrollable class = "item">
-    <ion-item [routerLink]="['/curso-detalle',curso.id]" >
+    <ion-item [routerLink]="['/curso-detalle',curso.id, curso.Nombre]" >
 
       <ion-thumbnail slot="start" slot="start">
         <img src="{{curso.Imagen}}" alet="foto">

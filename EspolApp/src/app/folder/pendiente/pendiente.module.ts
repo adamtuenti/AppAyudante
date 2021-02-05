@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { GruposEstudiosPageRoutingModule } from './grupos-estudios-routing.module';
+import { PendientePageRoutingModule } from './pendiente-routing.module';
 
-import { GruposEstudiosPage } from './grupos-estudios.page';
+import { PendientePage } from './pendiente.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GruposEstudiosPageRoutingModule
+    PendientePageRoutingModule
   ],
-  declarations: [GruposEstudiosPage]
+  declarations: [PendientePage]
 })
-export class GruposEstudiosPageModule {}
+export class PendientePageModule {}

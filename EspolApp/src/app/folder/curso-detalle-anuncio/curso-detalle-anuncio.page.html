@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-menu-button>
+      </ion-menu-button>
+      <ion-title>Anuncio</ion-title>
+    </ion-buttons>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <label style="margin: auto;display: block;font-size: 27px;font-weight: bold;color:black; align-items: center;text-align: center;">{{publicacion.Titulo}}</label>
+    </ion-card-header>
+    <ion-card-content style="margin: auto;display: block;font-size: 19px;color:black; align-items: center;text-align: center;">
+      {{publicacion.Descripcion}}
+     </ion-card-content>
+
+     <ion-img src="{{publicacion.Foto}}" style="height: 35%;width: 35%;margin: auto;display: block;margin-top: 7.5px;margin-bottom: 15.5px;"></ion-img>
+      
+   
+
+        
+
+    
+
+
+    
+    <ng-container >
+
+      <label style="margin: auto;display: block;font-size: 17.5px;font-weight: bold;color:black; align-items: center;text-align: center;margin-top: 7.5px;">Contacto:</label>
+
+    
+      <ion-item>
+        <ion-icon name="person-outline" size="large" style="margin-right: 8px;" color="success"></ion-icon>
+        <ion-label style="font-size: 17px;">{{user.Nombre}} {{user.Apellido}}</ion-label>
+      </ion-item>
+
+    
+
+    <ion-item>
+      <a href= 'https://api.whatsapp.com/send?phone=+593984870784'><ion-icon name="logo-whatsapp" size="large" color="success" style="margin-right: 8px;"></ion-icon></a>
+      <ion-label>{{user.Telefono}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <a href="mailto:{{user.Correo}}"><ion-icon name="mail-outline" size="large" color="success" style="margin-right: 8px;"></ion-icon></a>
+      <ion-label>{{user.Correo}}</ion-label>
+    </ion-item>
+
+   
+  </ng-container>
+
+  
+
+    <!-- <ion-item>
+      <ion-icon routerLink="/perfil-update" name="create-outline" size="large" style="margin-right: 8px;background-color: aquamarine;" layout="icon-end" slot="end"></ion-icon>
+
+    </ion-item> -->
+      
+
+    
+
+
+    
+
+  </ion-card>
+
+</ion-content>
