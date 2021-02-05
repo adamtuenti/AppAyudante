@@ -1,7 +1,8 @@
 export class Publicaciones {
-    id?: String;
-    Descripcion: String;
-    Estudiante: String;
-    Fecha: String;
-    Titulo: String;
+    id?: string;
+    Descripcion: string;
+    Estudiante: string;
+    Fecha: string;
+    Titulo: string;
+    Visitas: number;
 }

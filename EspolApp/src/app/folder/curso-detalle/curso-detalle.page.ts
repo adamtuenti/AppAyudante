@@ -4,7 +4,7 @@ import { PublicacionesMateria } from 'src/app/models/publicaciones-materia';
 import { PublicacionesService } from 'src/app/services/publicaciones.service';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-curso-detalle',
@@ -23,7 +23,8 @@ export class CursoDetallePage implements OnInit {
   resultado = [];
   constructor(private activateRoute: ActivatedRoute,
               private publicacionesService: PublicacionesService,
-              private usuarioService: UsuarioService) { }
+              private usuarioService: UsuarioService,
+              private router: Router,) { }
 
   ngOnInit() {
 
@@ -56,6 +57,20 @@ export class CursoDetallePage implements OnInit {
     return true;
 
 
+  }
+
+  
+
+
+  aumentarVisita(id:string,publicacion:PublicacionesMateria){
+    publicacion.Visitas= publicacion.Visitas + 1
+    console.log("fff", publicacion.Visitas)
+    //[routerLink]="['/curso-detalle-anuncio',publicacion.id]"
+    this.publicacionesService.updatePublicacionesMateria(id,publicacion)
+   
+      this.router.navigate(['/curso-detalle-anuncio',publicacion.id]);
+      console.log("ingreso")
+    
   }
 
 }

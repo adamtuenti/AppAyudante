@@ -36,7 +36,7 @@ export class UsuarioDetallePage implements OnInit {
     });
 
 
-    this.usuarioService.getUsuario(this.id).subscribe(res => {this.usuario = res; console.log('aui')});
+    this.usuarioService.getUsuario(this.id).subscribe(res => {this.usuario = res;});
 
   
 

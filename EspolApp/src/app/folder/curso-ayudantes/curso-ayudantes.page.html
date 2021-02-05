@@ -29,13 +29,17 @@
     <ng-container *ngIf="ayudante.Materia == id">
     <ng-container *ngFor="let usuario of usuarios">
       
-      <ion-item *ngIf="usuario.id == ayudante.Usuario" [routerLink]="['/usuario-detalle',usuario.id]">
+      <ion-item *ngIf="usuario.id == ayudante.Usuario" (click)='aumentarVisita(ayudante.id,ayudante)'>
 
         <ion-thumbnail slot="start" slot="start">
           <img src="{{usuario.FotoPerfil}}" alet="foto">
         </ion-thumbnail>
         <ion-card-title>{{usuario.Nombre}}
-          {{usuario.Apellido}}</ion-card-title>
+          {{usuario.Apellido}} </ion-card-title>
+
+          <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{ayudante.Visitas}}</label></ion-button>
+          <!-- <div slot="end" style="align-items: center;justify-content: center;"><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{ayudante.Visitas}}</label></div> -->
+          
         
       </ion-item>
     

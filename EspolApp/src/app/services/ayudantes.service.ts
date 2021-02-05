@@ -13,7 +13,7 @@ import { Ayudantes } from '../models/ayudantes';
 })
 export class AyudantesService {
 
-  private ayduantesCollection: AngularFirestoreCollection <Ayudantes>;
+  private ayudantesCollection: AngularFirestoreCollection <Ayudantes>;
   private ayudantes: Observable<Ayudantes[]>;
 
   constructor(private firestore: AngularFirestore) {
@@ -49,9 +49,9 @@ export class AyudantesService {
  }
 
 
- getAyudanteMateria(materia:string){
-   return this.ayudantesCollection.snapshotChanges().where("Materia", "==", materia).get();
- }
+//  getAyudanteMateria(materia:string){
+//    return this.ayudantesCollection.snapshotChanges().where("Materia", "==", materia).get();
+//  }
 
 
 }

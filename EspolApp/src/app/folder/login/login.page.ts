@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Component, OnInit } from '@angular/core';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -39,7 +38,7 @@ export class LoginPage implements OnInit {
          this.usuarioService.getUsuario(res.user.uid).subscribe(res =>
           {this.user =res; 
            localStorage.setItem('userId', res.id);
-           localStorage.setItem('email',res.email);
+           localStorage.setItem('email',res.Correo);
           localStorage.setItem('Estado',res.Estado)
           if(localStorage.getItem('Estado')== "P"){
         this.router.navigateByUrl('/pendiente');}

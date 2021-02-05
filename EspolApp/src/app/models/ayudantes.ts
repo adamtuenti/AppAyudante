@@ -1,5 +1,6 @@
 export class Ayudantes {
-    id?: String;
-    Materia: String;
-    Usuario: String;
+    id?: string;
+    Materia: string;
+    Usuario: string;
+    Visitas: number;
 }

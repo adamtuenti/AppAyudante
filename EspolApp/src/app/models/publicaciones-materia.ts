@@ -1,9 +1,10 @@
 export class PublicacionesMateria {
     id?: String;
-    Descripcion: String;
-    Estudiante: String;
+    Descripcion: string;
+    Estudiante: string;
     Fecha: String;
-    Titulo: String;
-    Materia: String;
+    Materia: string;
     Foto: String;
+    Titulo: string;
+    
 }

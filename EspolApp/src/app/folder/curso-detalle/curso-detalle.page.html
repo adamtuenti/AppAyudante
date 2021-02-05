@@ -26,12 +26,27 @@
 
   <ng-container *ngIf="!getDatos()">
     <ng-container *ngFor="let publicacion of publicaciones">
-      <ion-card *ngIf="publicacion.Materia == id"  [routerLink]="['/curso-detalle-anuncio',publicacion.id]">
+      <ion-card *ngIf="publicacion.Materia == id"  (click)='aumentarVisita(publicacion.id,publicacion)'  > 
+        
+        
         <ion-card-header>
+
+
+          <ion-item>
+
+
+          
+
           <ion-card-title>{{publicacion.Titulo}}</ion-card-title>
+         
+        <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
+        
+        </ion-item>
         </ion-card-header>
         <ion-card-content>
           {{publicacion.Descripcion}}
+
+          Visitas:  {{publicacion.Visitas}}
         </ion-card-content>
 
       

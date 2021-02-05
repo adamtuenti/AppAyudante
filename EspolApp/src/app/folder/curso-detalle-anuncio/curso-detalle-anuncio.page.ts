@@ -4,6 +4,7 @@ import { PublicacionesMateria } from 'src/app/models/publicaciones-materia';
 import { PublicacionesService } from 'src/app/services/publicaciones.service';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { AyudantesService } from 'src/app/services/ayudantes.service';
 
 @Component({
   selector: 'app-curso-detalle-anuncio',
@@ -22,7 +23,8 @@ export class CursoDetalleAnuncioPage implements OnInit {
 
   constructor(private activateRoute: ActivatedRoute,
               private publicacionesService: PublicacionesService,
-              private usuarioService: UsuarioService) { }
+              private usuarioService: UsuarioService,
+              private AyudantesService: AyudantesService) { }
 
   ngOnInit() {
     this.activateRoute.paramMap.subscribe(paramMap => {
@@ -38,7 +40,12 @@ export class CursoDetalleAnuncioPage implements OnInit {
      //this.actividadService.getActividad(idActividad).subscribe(res => this.actividad =res);
       
     });
+    
+    
   }
+
+  
+
 
   
 

@@ -71,15 +71,15 @@ export class PublicacionesService {
       return this.publicacionesMateria;
     }
     getPublicacionMateria(id:string){
-      return this.publicacionesMateriaCollection.doc<Publicaciones>(id).valueChanges();
+      return this.publicacionesMateriaCollection.doc<PublicacionesMateria>(id).valueChanges();
     }
 
-    addPublicacionesMateria( Usuarios:Publicaciones){
-      return this.publicacionesMateriaCollection.add({...Usuarios});
+    addPublicacionesMateria( PublicacionesMateria:PublicacionesMateria){
+      return this.publicacionesMateriaCollection.add({...PublicacionesMateria});
     }
   
-    updatePublicacionesMateria(id:string, Usuarios:Publicaciones){
-      return this.publicacionesMateriaCollection.doc(id).update({...Usuarios});
+    updatePublicacionesMateria(id:string, PublicacionesMateria:PublicacionesMateria){
+      return this.publicacionesMateriaCollection.doc(id).update({...PublicacionesMateria});
     }
   
     removePublicacionesMateria(id:string){

@@ -4,6 +4,8 @@ import { Ayudantes } from 'src/app/models/ayudantes';
 import { AyudantesService } from 'src/app/services/ayudantes.service';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-curso-ayudantes',
@@ -21,7 +23,8 @@ export class CursoAyudantesPage implements OnInit {
   resultado = [];
   constructor(private activateRoute: ActivatedRoute,
               private ayudanteService: AyudantesService,
-              private usuarioService: UsuarioService) { }
+              private usuarioService: UsuarioService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -58,4 +61,16 @@ export class CursoAyudantesPage implements OnInit {
 
 
   }
+
+  aumentarVisita(id:string,ayudante:Ayudantes){
+    ayudante.Visitas= ayudante.Visitas + 1
+    //console.log("fff", publicacion.Visitas)
+    //[routerLink]="['/curso-detalle-anuncio',publicacion.id]"
+    this.ayudanteService.updateAyudante(id,ayudante)
+   
+      this.router.navigate(['/usuario-detalle',ayudante.Usuario]);
+      console.log("ingreso")
+    
+  }
+ 
 }

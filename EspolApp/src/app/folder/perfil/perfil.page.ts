@@ -9,7 +9,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class PerfilPage implements OnInit {
   public user: Usuarios=new Usuarios();
-
+  file: File;
   constructor(private usuarioService: UsuarioService,
               ) { }
 
@@ -20,15 +20,15 @@ export class PerfilPage implements OnInit {
 
   }
 
-  readURL(event): void {
-    if (event.target.files && event.target.files[0]) {
-        this.file = event.target.files[0];
+  // readURL(event): void {
+  //   if (event.target.files && event.target.files[0]) {
+  //       this.file = event.target.files[0];
 
-        const reader = new FileReader();
-        reader.onload = e => this.imageSrc = reader.result;
+  //       const reader = new FileReader();
+  //       reader.onload = e => this.imageSrc = reader.result;
 
-        reader.readAsDataURL(this.file);
-    }
-  }
+  //       reader.readAsDataURL(this.file);
+  //   }
+  // }
 
 }

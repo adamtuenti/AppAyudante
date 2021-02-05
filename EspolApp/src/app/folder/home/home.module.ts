@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { EmailComposer } from '@ionic-native/email-composer/ngx';
+
 
 
 import { HomePage } from './home.page';
@@ -19,8 +19,5 @@ import { HomePage } from './home.page';
 
   ],
   declarations: [HomePage],
-  providers: [
-    EmailComposer
-  ]
 })
 export class HomePageModule {}

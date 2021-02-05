@@ -41,6 +41,6 @@ export class UsuarioService {
   }
 
   removeUsuario(id:string){
-    return this.ususariosCollection.doc(id).delete();
+    return this.usuariosCollection.doc(id).delete();
  }
 }

@@ -111,7 +111,7 @@ export class RegistroPage implements OnInit {
  
 
   
-  async RegistrarUserCompleto(email:string, password:string, nombre:string ,apellido:string, matricula: string, telefono: string, downloadURL:string , downloadURL1:String){
+  async RegistrarUserCompleto(email:string, password:string, nombre:string ,apellido:string, matricula: string, telefono: string, downloadURL:string , downloadURL1:string){
     this.authService.signupnUser(email, password,nombre ,apellido, matricula, telefono, downloadURL, downloadURL1).
     then(
       auth=>{

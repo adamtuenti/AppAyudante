@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { AngularFireStorage } from 'angularfire2/storage';
-import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { MensajeErrorService } from 'src/app/services/mensaje-error.service';
+
 
 @Component({
   selector: 'app-perfil-update',
@@ -19,6 +22,9 @@ export class PerfilUpdatePage implements OnInit {
   constructor(private usuarioService: UsuarioService,
               private angularFireStorage: AngularFireStorage,
               public loadingController: LoadingController,
+              private router: Router,
+              private alertCtrt: AlertController,
+              private mensajeErrorService: MensajeErrorService,
               ) { }
 
   ngOnInit() {
@@ -90,6 +96,20 @@ export class PerfilUpdatePage implements OnInit {
     )     
 
 
+  }
+
+  async failedAlert(text: string) {
+    const alert = await this.alertCtrt.create({
+     cssClass: 'my-custom-class',
+     header: text,
+    buttons: [{
+    text: 'OK',
+      handler: () => {
+        
+      }
+    }]   
+    });
+    await alert.present();
   }
 
  
