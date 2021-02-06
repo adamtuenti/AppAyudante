@@ -88,10 +88,10 @@
 
   <div align="center">
 
-    <ion-button  color = "primary" fill="outline" style="height: 45px;" (click)="controlar(0)">
+    <ion-button disabled = "{{click}}" color = "primary" fill="outline" style="height: 45px;" (click)="controlar(0)">
       <ion-icon size="large" name="thumbs-up-outline" ></ion-icon>
     </ion-button>
-    <ion-button  color="danger" style="margin-left: 5.5px;height: 45px;" fill="outline"  (click)="controlar(1)">
+    <ion-button disabled = "{{click}}" color="danger" style="margin-left: 5.5px;height: 45px;" fill="outline"  (click)="controlar(1)">
       <ion-icon size="large" name="thumbs-down-outline" ></ion-icon>
     </ion-button>
 
