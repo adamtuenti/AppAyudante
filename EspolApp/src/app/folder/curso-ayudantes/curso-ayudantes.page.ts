@@ -68,7 +68,7 @@ export class CursoAyudantesPage implements OnInit {
     //[routerLink]="['/curso-detalle-anuncio',publicacion.id]"
     this.ayudanteService.updateAyudante(id,ayudante)
    
-      this.router.navigate(['/usuario-detalle',ayudante.Usuario]);
+      this.router.navigate(['/usuario-detalle',this.id,ayudante.Usuario]);
       console.log("ingreso")
     
   }

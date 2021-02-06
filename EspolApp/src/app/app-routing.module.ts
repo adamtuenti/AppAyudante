@@ -46,7 +46,7 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-    path: 'usuario-detalle/:id',
+    path: 'usuario-detalle/:idMateria/:id',
     loadChildren: () => import('./folder/usuario-detalle/usuario-detalle.module').then( m => m.UsuarioDetallePageModule),
     canActivate:[AuthGuard]
   },
@@ -108,7 +108,8 @@ const routes: Routes = [
   {
     path: 'mis-ayudantias-anuncios',
     loadChildren: () => import('./folder/mis-ayudantias-anuncios/mis-ayudantias-anuncios.module').then( m => m.MisAyudantiasAnunciosPageModule)
-  },  {
+  },
+  {
     path: 'solicitud-ayudantia',
     loadChildren: () => import('./folder/solicitud-ayudantia/solicitud-ayudantia.module').then( m => m.SolicitudAyudantiaPageModule)
   },

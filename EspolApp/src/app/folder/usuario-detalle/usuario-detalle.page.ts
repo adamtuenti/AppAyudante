@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuarios } from 'src/app/models/usuarios';
 import { ActivatedRoute } from '@angular/router';
+
+import { Ayudantes } from 'src/app/models/ayudantes';
+import { Calificaciones } from 'src/app/models/calificaciones';
+
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { AyudantesService } from 'src/app/services/ayudantes.service';
+import { CalificacionesService } from 'src/app/services/calificaciones.service';
 
 //import {EmailComposer, EmailComposerOptions} from "@ionic-native/email-composer/ngx";
 
@@ -16,44 +22,93 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 
 export class UsuarioDetallePage implements OnInit {
 
-  
 
-
-  usuario:Usuarios[] = [];
+  usuario: Usuarios = new Usuarios();
+  ayudantes: Ayudantes[]=[];
+  calificaciones: Calificaciones[] = [];
   id:string;
+  idMateria:string;
+  myId:string;
+  click:boolean;
   constructor(private activateRoute: ActivatedRoute,
               private usuarioService: UsuarioService,
-              //private emailComposer: EmailComposer
+              private ayudantesService: AyudantesService,
+              private calificacionesService: CalificacionesService,
               ) { }
 
   ngOnInit() {
-
+    this.myId= localStorage.getItem('userId')
     this.activateRoute.paramMap.subscribe(paramMap => {
       const idUsuario = paramMap.get('id');
+      const idMateria = paramMap.get('idMateria');
+      this.idMateria=idMateria;
       this.id = idUsuario;
+      this.usuarioService.getUsuario(idUsuario).subscribe(res => {this.usuario = res;});
      // this.actividadService.getActividad(idActividad).subscribe(res => this.actividad =res);
-      
     });
 
 
-    this.usuarioService.getUsuario(this.id).subscribe(res => {this.usuario = res;});
+    this.ayudantesService.getAyudantes().subscribe(res => {this.ayudantes = res;});
+    this.calificacionesService.getCalificaciones().subscribe(res => {this.calificaciones = res;});
+    this.controlar();
+  }
 
-  
+  like(){
+   let  ayudante: Ayudantes = new Ayudantes();
+    for (let index = 0; index < this.ayudantes.length; index++) {
+      if((this.ayudantes[index].Materia == this.idMateria) && (this.ayudantes[index].Usuario == this.id)){
+        ayudante= this.ayudantes[index]
+        ayudante.Like=  ayudante.Like +1
+        this.ayudantesService.updateAyudante(ayudante.id,ayudante)
 
-  let email = {
-  to: 'adanavarrete15@gmail.com',
-  cc: 'hwong@espol.edu.ec',
-  bcc: ['john@doe.com', 'jane@doe.com'],
-  attachments: [
+        let calificacion: Calificaciones = new Calificaciones();
+        calificacion.Ayudante= this.id;
+        calificacion.Materia= this.idMateria;
+        calificacion.Estudiante=this.myId;
+        this.calificacionesService.addCalificacion(calificacion);
+      }
+      
+    }
+   
+
+  }
+
+  dislike(){
+   let  ayudante: Ayudantes = new Ayudantes();
+    for (let index = 0; index < this.ayudantes.length; index++) {
+      if((this.ayudantes[index].Materia == this.idMateria) && (this.ayudantes[index].Usuario == this.id)){
+        ayudante= this.ayudantes[index]
+        ayudante.Dislike=  ayudante.Dislike +1
+        this.ayudantesService.updateAyudante(ayudante.id,ayudante)
+
+        let calificacion: Calificaciones = new Calificaciones();
+        calificacion.Ayudante= this.id;
+        calificacion.Materia= this.idMateria;
+        calificacion.Estudiante=this.myId;
+        this.calificacionesService.addCalificacion(calificacion);
+      }
+      
+    }
+   
+
+  }
+
+
+  controlar(selec:number){ 
+  let validar;
+    for (let index = 0; index < this.calificaciones.length; index++) {
+      if((this.calificaciones[index].Materia == this.idMateria) && (this.calificaciones[index].Ayudante == this.id)&& (this.calificaciones[index].Estudiante == this.myId)){
+        validar=false
+        
+      }
+    }
     
-  ],
-  subject: 'Cordova Icons',
-  body: 'How are you? Nice greetings from Leipzig',
-  isHtml: true
-}
+    if (validar!= false){
 
-// Send a text message using default options
-// this.emailComposer.open(email);
+    this.click= true;
+    if(selec ==0){this.like()}
+    if(selec ==1){this.dislike()}
+    }
 
-}
+  }
 }
