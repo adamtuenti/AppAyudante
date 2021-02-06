@@ -36,15 +36,18 @@ export class LoginPage implements OnInit {
     then(
       (res)=>{
         localStorage.setItem('userId', res.user.uid);
+        localStorage.setItem('Fondo','#FBC8B5');
+        
          this.usuarioService.getUsuario(res.user.uid).subscribe(res =>
           {this.user =res; 
            
-           localStorage.setItem('email',res.Correo);
-          localStorage.setItem('Estado',res.Estado)
+            localStorage.setItem('email',res.Correo);
+            localStorage.setItem('Estado',res.Estado)
+            localStorage.setItem('Rol',res.Rol);
           if(localStorage.getItem('Estado')== "P"){
-        this.router.navigateByUrl('/pendiente');}
+            this.router.navigateByUrl('/pendiente');}
           else if(localStorage.getItem('Estado')== "A"){
-        this.router.navigateByUrl('/home');}
+            this.router.navigateByUrl('/cursos');}
           
           });
 

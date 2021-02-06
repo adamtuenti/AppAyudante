@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-perfil',
@@ -11,6 +13,7 @@ export class PerfilPage implements OnInit {
   public user: Usuarios=new Usuarios();
   file: File;
   constructor(private usuarioService: UsuarioService,
+              private authService:AuthService
               ) { }
 
   ngOnInit() {
@@ -30,5 +33,9 @@ export class PerfilPage implements OnInit {
   //       reader.readAsDataURL(this.file);
   //   }
   // }
+
+  logOutUser(){
+    this.authService.logOutUser();
+  }
 
 }

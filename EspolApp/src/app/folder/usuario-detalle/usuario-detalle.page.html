@@ -1,17 +1,59 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons>
-      <ion-menu-button>
-      </ion-menu-button>
-      <ion-title>Datos del usuario</ion-title>
-    </ion-buttons>
+<ion-header >
+  <ion-toolbar>
+
+    <ion-segment color="tertiary" value="cursos" >
+
+      <!-- <ion-segment-button *ngIf="Rol==Ayudante" value="mis-ayudantias" [routerLink]="['/mis-ayudantias']" routerDirection="root">
+        <ion-icon name="file-tray-stacked-outline" size="large"></ion-icon> 
+        <ion-label style="font-size: 14;">Mis Cursos</ion-label>
+      </ion-segment-button> -->
+
+      <ion-segment-button value="publicaciones" [routerLink]="['/publicaciones']" routerDirection="root">
+        <ion-icon name="newspaper-outline" size="large"></ion-icon> 
+        <ion-label style="font-size: 14;">Publicaciones</ion-label>
+      </ion-segment-button>
+      
+      <ion-segment-button value="cursos" [routerLink]="['/cursos']" routerDirection="root">
+        <ion-icon name="library-outline" size="large"></ion-icon> <ion-label style="font-size: 14px;">Cursos</ion-label>
+      </ion-segment-button>
     
+    
+      <ion-segment-button value="perfil" [routerLink]="['/perfil']" routerDirection="root">
+        <ion-icon name="person-circle-outline" size="large"></ion-icon> <ion-label style="font-size: 12px;">Perfil</ion-label>
+      </ion-segment-button>
+
+  
+
+    </ion-segment>
+
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+
+  <!-- <ion-segment color="tertiary" value="anuncio">
+
+    <ion-segment-button value="anuncios" layout="icon-start" [routerLink]="['/curso-detalle',id, nombreCurso]" routerDirection="root">
+      <ion-icon name="megaphone-outline" size="large"></ion-icon> <ion-label>Anuncios</ion-label>
+    </ion-segment-button>
+    
+    <ion-segment-button value="ayudantes" layout="icon-start"  [routerLink]="['/curso-ayudantes',id, nombreCurso]" routerDirection="root">
+      <ion-icon name="people-outline" size="large"></ion-icon> <ion-label>Ayudantes</ion-label>
+    </ion-segment-button>
+
+   
+  </ion-segment> -->
+
+
   <ion-card>
-    <ion-img src="{{usuario.FotoPerfil}}" style="margin-top:7.5px;margin-bottom: 7.5px;"></ion-img>
+
+    <ion-item>
+
+      <ion-img id="blah" src="{{usuario.FotoPerfil}}" alt="your image" style="margin-top:2.5px;margin-bottom: 2.5px;height: 350px;width: 350px;"></ion-img>
+
+    </ion-item>
+    <!-- <ion-img src="{{usuario.FotoPerfil}}" style="margin-top:7.5px;margin-bottom: 7.5px;"></ion-img> -->
     <!-- <ion-card-header>
       <ion-card-title>Correo: {{usuario.Correo}}</ion-card-title>
     </ion-card-header> -->
@@ -43,6 +85,18 @@
 
     
   </ion-card>
+
+  <div align="center">
+
+    <ion-button color = "primary" fill="outline" style="height: 45px;">
+      <ion-icon size="large" name="thumbs-up-outline" ></ion-icon>
+    </ion-button>
+    <ion-button color="danger" style="margin-left: 5.5px;height: 45px;" fill="outline">
+      <ion-icon size="large" name="thumbs-down-outline" ></ion-icon>
+    </ion-button>
+
+  </div>
+  
 </ion-content>
 <style>
   ion-img {     

@@ -1,16 +1,46 @@
-<ion-header>
-  <ion-toolbar color="primary">
+<ion-header >
+  <ion-toolbar>
+
+    <ion-segment color="tertiary" value="cursos" >
+
+      <!-- <ion-segment-button *ngIf="Rol==Ayudante" value="mis-ayudantias" [routerLink]="['/mis-ayudantias']" routerDirection="root">
+        <ion-icon name="file-tray-stacked-outline" size="large"></ion-icon> 
+        <ion-label style="font-size: 14;">Mis Cursos</ion-label>
+      </ion-segment-button> -->
+
+      <ion-segment-button value="publicaciones" [routerLink]="['/publicaciones']" routerDirection="root">
+        <ion-icon name="newspaper-outline" size="large"></ion-icon> 
+        <ion-label style="font-size: 14;">Publicaciones</ion-label>
+      </ion-segment-button>
+      
+      <ion-segment-button value="cursos" [routerLink]="['/cursos']" routerDirection="root">
+        <ion-icon name="library-outline" size="large"></ion-icon> <ion-label style="font-size: 14px;">Cursos</ion-label>
+      </ion-segment-button>
+    
+    
+      <ion-segment-button value="perfil" [routerLink]="['/perfil']" routerDirection="root">
+        <ion-icon name="person-circle-outline" size="large"></ion-icon> <ion-label style="font-size: 12px;">Perfil</ion-label>
+      </ion-segment-button>
+
+  
+
+  
+
+</ion-segment>
+
+</ion-toolbar>
+  <!-- <ion-toolbar color="primary">
     <ion-buttons>
       <ion-menu-button>
       </ion-menu-button>
       <ion-title>Cursos</ion-title>
     </ion-buttons>    
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content>
 
-  <ion-segment color="tertiary" value="cursos">
+  <!-- <ion-segment color="tertiary" value="cursos">
 
     <ion-segment-button value="publicaciones" layout="icon-start" [routerLink]="['/publicaciones']" routerDirection="root">
       <ion-icon name="newspaper-outline" size="large"></ion-icon> <ion-label>Publicaciones</ion-label>
@@ -21,7 +51,7 @@
     </ion-segment-button>
 
    
-  </ion-segment>
+  </ion-segment> -->
 
 
   <ion-card *ngFor="let curso of cursos" scrollable class = "item">
