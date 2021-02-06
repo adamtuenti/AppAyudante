@@ -19,6 +19,7 @@ export class CursoDetallePage implements OnInit {
   id:string;
   nombre:string;
   idEstudiante:string;
+  textoBuscar = '';
 
   resultado = [];
   constructor(private activateRoute: ActivatedRoute,
@@ -71,6 +72,11 @@ export class CursoDetallePage implements OnInit {
       this.router.navigate(['/curso-detalle-anuncio',publicacion.id]);
       console.log("ingreso")
     
+  }
+
+  buscar(event){
+    const texto = event.target.value
+    this.textoBuscar=texto;
   }
 
 }

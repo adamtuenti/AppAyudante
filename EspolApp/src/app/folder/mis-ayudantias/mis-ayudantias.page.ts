@@ -16,6 +16,7 @@ export class MisAyudantiasPage implements OnInit {
   ayudantias:Ayudantes[]= [];
   cursos:Cursos[]= [];
   id;
+  textoBuscar='';
 
   constructor(private ayudanteService: AyudantesService,
   private cursosService: CursosService) { }
@@ -25,6 +26,11 @@ export class MisAyudantiasPage implements OnInit {
     this.id = localStorage.getItem("userId")
     this.ayudanteService.getAyudantes().subscribe(res => this.ayudantias = res);
     this.cursosService.getCursos().subscribe(res => this.cursos = res);
+  }
+
+  buscar(event){
+    const texto = event.target.value
+    this.textoBuscar=texto;
   }
 
   

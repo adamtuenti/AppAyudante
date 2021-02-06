@@ -33,7 +33,7 @@
 <ion-content>
 
 
-  <ion-segment color="tertiary" value="anuncio">
+  <ion-segment color="tertiary" value="anuncios">
 
     <ion-segment-button value="anuncios" layout="icon-start" [routerLink]="['/curso-detalle',id, nombreCurso]" routerDirection="root">
       <ion-icon name="megaphone-outline" size="large"></ion-icon> <ion-label>Anuncios</ion-label>
@@ -50,9 +50,17 @@
     <ion-label style="font-size: 15.5px;font-weight: bold;text-align: center;margin-top: 1.5px;margin-bottom: 1.5px;">{{nombreCurso}}</ion-label>
   </ion-item> -->
 
+  <ion-searchbar
+    color="light" 
+    placeholder = "Buscar anuncio..."
+    animated
+
+    (ionChange)="buscar($event)">
+    </ion-searchbar>
+
 
   <ng-container *ngIf="!getDatos()">
-    <ng-container *ngFor="let publicacion of publicaciones">
+    <ng-container *ngFor="let publicacion of publicaciones | filtroAnuncio: textoBuscar">
       <ion-card *ngIf="publicacion.Materia == id"  (click)='aumentarVisita(publicacion.id,publicacion)'  > 
         
         

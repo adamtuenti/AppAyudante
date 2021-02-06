@@ -1,7 +1,7 @@
 <ion-header >
   <ion-toolbar>
 
-    <ion-segment color="tertiary" value="mis-ayudantias" >
+    <ion-segment color="tertiary" value="perfil" >
 
       <!-- <ion-segment-button *ngIf="Rol==Ayudante" value="mis-ayudantias" [routerLink]="['/mis-ayudantias']" routerDirection="root">
         <ion-icon name="file-tray-stacked-outline" size="large"></ion-icon> 
@@ -33,9 +33,17 @@
 </ion-header>
 
 <ion-content>
+   <ion-searchbar
+    color="light" 
+    placeholder = "Buscar curso..."
+    animated
+
+    (ionChange)="buscar($event)">
+    </ion-searchbar>
+
   <ng-container *ngFor="let ayudante of ayudantias">
     <ng-container *ngIf="ayudante.Usuario == id">
-      <ng-container *ngFor="let curso of cursos">
+      <ng-container *ngFor="let curso of cursos | filtroCurso: textoBuscar">
         <ion-card *ngIf="ayudante.Materia == curso.id" scrollable class = "item">
           <ion-item >
       
