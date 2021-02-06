@@ -13,4 +13,5 @@ export class Usuarios {
     Universidad: string;
     Verificacion: boolean;
     Estado: string;
+    EsperaAyudantia: boolean;
 }

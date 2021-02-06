@@ -36,8 +36,8 @@ export class AyudantesService {
     return this.ayudantesCollection.doc<Ayudantes>(id).valueChanges();
   }
 
-  addAyudante(id:string, Ayudantes:Ayudantes){
-    return this.ayudantesCollection.doc(id).set({...Ayudantes});
+  addAyudante(Ayudantes:Ayudantes){
+    return this.ayudantesCollection.add({...Ayudantes});
   }
 
   updateAyudante(id:string, Ayudantes:Ayudantes){

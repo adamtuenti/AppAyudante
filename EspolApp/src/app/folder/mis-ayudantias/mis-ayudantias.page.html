@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>mis hugo ayudantias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngFor="let ayudante of ayudantias">
+    <ng-container *ngIf="ayudante.Usuario == id">
+      <ng-container *ngFor="let curso of cursos">
+        <ion-card *ngIf="ayudante.Materia == curso.id" scrollable class = "item">
+          <ion-item >
+      
+            <ion-thumbnail slot="start" slot="start">
+              <img src="{{curso.Imagen}}" alet="foto">
+            </ion-thumbnail>
+            <ion-card-title>{{curso.Nombre}}</ion-card-title>
+
+            <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{ayudante.Visitas}}</label></ion-button>
+          </ion-item>
+        
+      
+        </ion-card>
+
+      </ng-container>
+
+    </ng-container>
+  </ng-container>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/crear-ayudantia">
+     <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+
+</ion-fab>
+ 
+
+</ion-content>

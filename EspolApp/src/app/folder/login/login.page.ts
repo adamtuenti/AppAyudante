@@ -35,9 +35,10 @@ export class LoginPage implements OnInit {
    this.authService.loginUser(form.value.email, form.value.password).
     then(
       (res)=>{
+        localStorage.setItem('userId', res.user.uid);
          this.usuarioService.getUsuario(res.user.uid).subscribe(res =>
           {this.user =res; 
-           localStorage.setItem('userId', res.id);
+           
            localStorage.setItem('email',res.Correo);
           localStorage.setItem('Estado',res.Estado)
           if(localStorage.getItem('Estado')== "P"){

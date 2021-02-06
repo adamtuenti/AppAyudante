@@ -22,8 +22,8 @@ export class AuthService {
         localStorage.setItem('userId', res.user.uid);
 
         this.usuarioService.getUsuario(res.user.uid).subscribe(res => {
-          localStorage.setItem('Rol','A');
-          localStorage.setItem('Estado','A');
+          localStorage.setItem('Rol',res.Rol);
+          localStorage.setItem('Estado',res.Estado);
         
         });
 

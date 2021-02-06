@@ -4,7 +4,8 @@ export class PublicacionesMateria {
     Estudiante: string;
     Fecha: String;
     Materia: string;
-    Foto: String;
+    Foto: string;
     Titulo: string;
+    Visitas: number;
     
 }

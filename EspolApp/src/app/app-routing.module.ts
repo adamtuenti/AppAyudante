@@ -84,7 +84,41 @@ const routes: Routes = [
     path: 'pendiente',
     loadChildren: () => import('./folder/pendiente/pendiente.module').then( m => m.PendientePageModule),
     canActivate:[PendienteGuard]
+  },
+  // {
+  //   path: 'mis-ayudantias',
+  //   loadChildren: () => import('./foler/mis-ayudantias/mis-ayudantias.module').then( m => m.MisAyudantiasPageModule)
+  // },
+  {
+    path: 'mis-ayudantias',
+    loadChildren: () => import('./folder/mis-ayudantias/mis-ayudantias.module').then( m => m.MisAyudantiasPageModule)
+  },
+  // {
+  //   path: 'mis-ayudantias-anuncios',
+  //   loadChildren: () => import('./foler/mis-ayudantias-anuncios/mis-ayudantias-anuncios.module').then( m => m.MisAyudantiasAnunciosPageModule)
+  // },
+  // {
+  //   path: 'crear-ayudantia',
+  //   loadChildren: () => import('./foler/crear-ayudantia/crear-ayudantia.module').then( m => m.CrearAyudantiaPageModule)
+  // },
+  {
+    path: 'crear-ayudantia',
+    loadChildren: () => import('./folder/crear-ayudantia/crear-ayudantia.module').then( m => m.CrearAyudantiaPageModule)
+  },
+  {
+    path: 'mis-ayudantias-anuncios',
+    loadChildren: () => import('./folder/mis-ayudantias-anuncios/mis-ayudantias-anuncios.module').then( m => m.MisAyudantiasAnunciosPageModule)
+  },  {
+    path: 'solicitud-ayudantia',
+    loadChildren: () => import('./folder/solicitud-ayudantia/solicitud-ayudantia.module').then( m => m.SolicitudAyudantiaPageModule)
+  },
+  {
+    path: 'solicitud-materia',
+    loadChildren: () => import('./folder/solicitud-materia/solicitud-materia.module').then( m => m.SolicitudMateriaPageModule)
   }
+
+
+
 ];
 
 @NgModule({
