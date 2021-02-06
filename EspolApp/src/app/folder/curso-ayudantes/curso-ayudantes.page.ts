@@ -21,6 +21,7 @@ export class CursoAyudantesPage implements OnInit {
   nombre:string;
 
   resultado = [];
+  textoBuscar= '';
   constructor(private activateRoute: ActivatedRoute,
               private ayudanteService: AyudantesService,
               private usuarioService: UsuarioService,
@@ -58,8 +59,6 @@ export class CursoAyudantesPage implements OnInit {
       }
     }
     return true;
-
-
   }
 
   aumentarVisita(id:string,ayudante:Ayudantes){
@@ -69,8 +68,12 @@ export class CursoAyudantesPage implements OnInit {
     this.ayudanteService.updateAyudante(id,ayudante)
    
       this.router.navigate(['/usuario-detalle',this.id,ayudante.Usuario]);
-      console.log("ingreso")
-    
+      console.log("ingreso")  
+  }
+
+  buscar(event){
+    const texto = event.target.value
+    this.textoBuscar=texto;
   }
  
 }

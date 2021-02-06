@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { CursoAyudantesPageRoutingModule } from './curso-ayudantes-routing.module';
 
 import { CursoAyudantesPage } from './curso-ayudantes.page';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-  imports: [
+  imports: [ 
+    PipesModule,
     CommonModule,
     FormsModule,
     IonicModule,

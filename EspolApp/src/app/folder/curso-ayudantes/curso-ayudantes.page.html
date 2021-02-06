@@ -23,7 +23,6 @@
 </ion-header>
 
 <ion-content>
- 
 
   <ion-segment color="tertiary" value="ayudantes">
 
@@ -33,28 +32,26 @@
     
     <ion-segment-button value="ayudantes" layout="icon-start"  [routerLink]="['/curso-ayudantes',id, nombreCurso]" routerDirection="root">
       <ion-icon name="people-outline" size="large"></ion-icon> <ion-label>Ayudantes</ion-label>
-    </ion-segment-button>
-
-   
+    </ion-segment-button>   
   </ion-segment>
 
   
 
 <ion-content>
 
-  <!-- <ion-item style="align-items: center;background-color: aqua;">
-    <ion-label style="font-size: 15.5px;font-weight: bold;text-align: center;margin-top: 1.5px;margin-bottom: 1.5px;">{{nombreCurso}}</ion-label>
-  </ion-item> -->
+  <ion-searchbar
+    color="light" 
+    placeholder = "Buscar curso..."
+    animated
 
-  
-
- 
+    (ionChange)="buscar($event)">
+    </ion-searchbar>
 
 
   <ion-list *ngIf="!getDatos()">
     <ng-container *ngFor="let ayudante of ayudantes">
     <ng-container *ngIf="ayudante.Materia == id">
-    <ng-container *ngFor="let usuario of usuarios">
+    <ng-container *ngFor="let usuario of usuarios | filtroUsuario: textoBuscar">
       
       <ion-item *ngIf="usuario.id == ayudante.Usuario" (click)='aumentarVisita(ayudante.id,ayudante)'>
 
@@ -62,7 +59,7 @@
           <img src="{{usuario.FotoPerfil}}" alet="foto">
         </ion-thumbnail>
         <ion-card-title>
-          {{usuario.Nombre}}{{usuario.Apellido}} 
+          {{usuario.Nombre}} {{usuario.Apellido}} 
         </ion-card-title>
 
           <ion-list fill="outline" slot='end'>

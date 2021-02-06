@@ -34,35 +34,18 @@
 
 <ion-content>
   
-   
-      <ion-img class="circle-pic"  src="{{user.FotoPerfil}}" ></ion-img>
-  
-      
+  <ion-img class="circle-pic"  src="{{user.FotoPerfil}}" ></ion-img>
 
-      
-      
-   
-    
-      <ion-card>
-
-
-
+  <ion-card>
     <ion-item>
       <ion-icon name="person-outline" size="large" style="margin-right: 8px;"></ion-icon>
       <ion-label style="font-size: 17px;">{{user.Nombre}} {{user.Apellido}}</ion-label>
     </ion-item>
-
-    
-
-
-    
-
-
+  
     <ion-item>
       <ion-icon name="mail-outline" size="large" style="margin-right: 8px;"></ion-icon>
       <ion-label style="font-size: 17px;">{{user.Correo}}</ion-label>
     </ion-item>
-
 
     <ion-item>
       <ion-icon name="call-outline" size="large" style="margin-right: 8px;"></ion-icon>
@@ -79,26 +62,23 @@
       <ion-label style="font-size: 17px;">{{user.Rol}}</ion-label>
     </ion-item>
 
-  
-
     <ion-item>
       <ion-icon routerLink="/perfil-update" name="create-outline" size="large" style="margin-right: 8px;background-color: aquamarine;" layout="icon-end" slot="end"></ion-icon>
 
     </ion-item>
-      
-
-    
-
-
-    
-
+  
   </ion-card>
 
   <div align="center" style="align-items: center;justify-content: center;align-content: center;margin-top:15.5px;">
 
-    <ion-button *ngIf="Rol==Ayudante" style="width: 250px;height: 45px;" [routerLink]="['/mis-ayudantias']">
+    <ion-button *ngIf="user.Rol == 'Ayudante'" style="width: 250px;height: 45px;" [routerLink]="['/mis-ayudantias']">
       <ion-icon name="file-tray-stacked-outline" size="large" style="margin-right: 8px;"></ion-icon>
       <ion-label style="font-size: 17px;">Mis Cursos</ion-label>
+    </ion-button>
+
+    <ion-button *ngIf="user.Rol == 'Estudiante'" style="width: 250px;height: 45px;" (click)="serAyudante()">
+      <ion-icon name="file-tray-stacked-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">Ser ayudante</ion-label>
     </ion-button>
 
     <ion-button style="width: 250px;height: 45px;margin-top:12.5px;" color="danger">

@@ -10,12 +10,18 @@ import { CursosService } from 'src/app/services/cursos.service';
 export class CursosPage implements OnInit {
 
   cursos: Cursos[]=[];
+  textoBuscar='';
 
   constructor(private cursoService: CursosService) { }
 
   ngOnInit() {
 
     this.cursoService.getCursos().subscribe(res => this.cursos = res);
+  }
+
+  buscar(event){
+    const texto = event.target.value
+    this.textoBuscar=texto;
   }
 
 }

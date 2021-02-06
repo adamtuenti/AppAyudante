@@ -50,7 +50,6 @@ export class UsuarioDetallePage implements OnInit {
 
     this.ayudantesService.getAyudantes().subscribe(res => {this.ayudantes = res;});
     this.calificacionesService.getCalificaciones().subscribe(res => {this.calificaciones = res;});
-    this.controlar();
   }
 
   like(){
@@ -94,20 +93,19 @@ export class UsuarioDetallePage implements OnInit {
   }
 
 
-  controlar(selec:number){ 
-  let validar;
+  controlar(num){ 
+    let validar;
+    
     for (let index = 0; index < this.calificaciones.length; index++) {
       if((this.calificaciones[index].Materia == this.idMateria) && (this.calificaciones[index].Ayudante == this.id)&& (this.calificaciones[index].Estudiante == this.myId)){
-        validar=false
-        
+        validar=false    
       }
     }
     
-    if (validar!= false){
-
-    this.click= true;
-    if(selec ==0){this.like()}
-    if(selec ==1){this.dislike()}
+    if (validar= false){
+      this.click= true;
+      if(num ==0){this.like()}
+      if(num ==1){this.dislike()}
     }
 
   }

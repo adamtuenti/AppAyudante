@@ -2,7 +2,7 @@
   <ion-toolbar>
 
     <ion-segment color="tertiary" value="cursos" >
-
+ 
       <!-- <ion-segment-button *ngIf="Rol==Ayudante" value="mis-ayudantias" [routerLink]="['/mis-ayudantias']" routerDirection="root">
         <ion-icon name="file-tray-stacked-outline" size="large"></ion-icon> 
         <ion-label style="font-size: 14;">Mis Cursos</ion-label>
@@ -29,32 +29,18 @@
 </ion-segment>
 
 </ion-toolbar>
-  <!-- <ion-toolbar color="primary">
-    <ion-buttons>
-      <ion-menu-button>
-      </ion-menu-button>
-      <ion-title>Cursos</ion-title>
-    </ion-buttons>    
-  </ion-toolbar> -->
 </ion-header>
 
 <ion-content>
+  <ion-searchbar
+    color="light" 
+    placeholder = "Buscar curso..."
+    animated
 
-  <!-- <ion-segment color="tertiary" value="cursos">
+    (ionChange)="buscar($event)">
+    </ion-searchbar>
 
-    <ion-segment-button value="publicaciones" layout="icon-start" [routerLink]="['/publicaciones']" routerDirection="root">
-      <ion-icon name="newspaper-outline" size="large"></ion-icon> <ion-label>Publicaciones</ion-label>
-    </ion-segment-button>
-    
-    <ion-segment-button value="cursos" layout="icon-start" [routerLink]="['/cursos']" routerDirection="root">
-      <ion-icon name="library-outline" size="large"></ion-icon> <ion-label>Cursos</ion-label>
-    </ion-segment-button>
-
-   
-  </ion-segment> -->
-
-
-  <ion-card *ngFor="let curso of cursos" scrollable class = "item">
+  <ion-card *ngFor="let curso of cursos | filtroCurso: textoBuscar" scrollable class = "item">
     <ion-item [routerLink]="['/curso-detalle',curso.id, curso.Nombre]" >
 
       <ion-thumbnail slot="start" slot="start">
