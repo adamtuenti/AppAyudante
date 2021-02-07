@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-menu-button>
+      </ion-menu-button>
+      <ion-title>Sugerencia</ion-title>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+<form #form="ngForm" (ngSubmit)="enviarSugerencia(form)">
+    <ion-list>   
+         
+      <ion-item>
+        <ion-label>Asunto: </ion-label>
+        <ion-input required placeholder="Título" name="titulo" type='text' ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Descripción: </ion-label>
+        <ion-textarea required placeholder="Descripción" name="descripcion" type='text' ngModel required></ion-textarea>
+      </ion-item>
+    
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button type="submit"  [disabled]="form.invalid" expand="block">
+        Enviar
+      </ion-button>
+    </div>
+  </form>
+
+</ion-content>

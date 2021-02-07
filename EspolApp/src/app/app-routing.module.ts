@@ -116,7 +116,11 @@ const routes: Routes = [
   {
     path: 'solicitud-materia',
     loadChildren: () => import('./folder/solicitud-materia/solicitud-materia.module').then( m => m.SolicitudMateriaPageModule)
+  },  {
+    path: 'sugerencias',
+    loadChildren: () => import('./folder/sugerencias/sugerencias.module').then( m => m.SugerenciasPageModule)
   }
+
 
 
 
