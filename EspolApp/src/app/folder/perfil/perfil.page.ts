@@ -40,8 +40,8 @@ export class PerfilPage implements OnInit {
   async failedAlert() {
     const alert = await this.alertCtrt.create({
      cssClass: 'my-custom-class',
-     header: "Felicidades por querer ser ayudante.",
-     message: 'Pronto estaremos en contacto con usted.',
+     header: "Genial!",
+     message: 'Pronto estaremos en contacto contigo por whatsapp!',
     buttons: [{
     text: 'OK',
       handler: () => {

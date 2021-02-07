@@ -76,8 +76,8 @@
       <ion-label style="font-size: 17px;">Mis Cursos</ion-label>
     </ion-button>
 
-    <ion-button *ngIf="user.Rol == 'Estudiante'" style="width: 250px;height: 45px;" (click)="serAyudante()">
-      <ion-icon name="file-tray-stacked-outline" size="large" style="margin-right: 8px;"></ion-icon>
+    <ion-button *ngIf="user.Rol == 'Estudiante'" style="width: 250px;height: 45px;" (click)="serAyudante()" color="success">
+      <ion-icon name="school-outline" size="large" style="margin-right: 8px;"></ion-icon>
       <ion-label style="font-size: 17px;">Ser ayudante</ion-label>
     </ion-button>
 
@@ -89,7 +89,7 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/sugerencias">
-     <ion-icon name="help-circle-outline"></ion-icon>
+     <ion-icon name="help-circle-outline" size="large"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 

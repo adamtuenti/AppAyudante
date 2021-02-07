@@ -1,27 +1,30 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons>
-      <ion-menu-button>
-      </ion-menu-button>
-      <ion-title>Publicaciones</ion-title>
-    </ion-buttons>    
+<ion-header >
+  <ion-toolbar>
+
+    <ion-segment color="tertiary" value="publicaciones" >
+
+
+      <ion-segment-button value="publicaciones" [routerLink]="['/publicaciones']" routerDirection="root">
+        <ion-icon name="newspaper-outline" size="large"></ion-icon> 
+        <ion-label style="font-size: 14;">Publicaciones</ion-label>
+      </ion-segment-button>
+      
+      <ion-segment-button value="cursos" [routerLink]="['/cursos']" routerDirection="root">
+        <ion-icon name="library-outline" size="large"></ion-icon> <ion-label style="font-size: 14px;">Cursos</ion-label>
+      </ion-segment-button>
+    
+    
+      <ion-segment-button value="perfil" [routerLink]="['/perfil']" routerDirection="root">
+        <ion-icon name="person-circle-outline" size="large"></ion-icon> <ion-label style="font-size: 12px;">Perfil</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
-
-  <ion-segment color="tertiary" value="recursos">
-
-    <ion-segment-button value="recursos" layout="icon-start" [routerLink]="['/publicaciones']" routerDirection="root">
-      <ion-icon name="newspaper-outline" size="large"></ion-icon> <ion-label>Publicaciones</ion-label>
-    </ion-segment-button>
-    
-    <ion-segment-button value="actividades" layout="icon-start" [routerLink]="['/cursos']" routerDirection="root">
-      <ion-icon name="library-outline" size="large"></ion-icon> <ion-label>Cursos</ion-label>
-    </ion-segment-button>
-
-   
-  </ion-segment>
 
 
   <ion-card *ngFor="let publicacion of publicaciones" scrollable class = "item">

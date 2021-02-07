@@ -5,6 +5,11 @@ import { PublicacionesService } from 'src/app/services/publicaciones.service';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
+import { Ayudantes } from 'src/app/models/ayudantes';
+import { AyudantesService } from 'src/app/services/ayudantes.service';
+import { Cursos } from 'src/app/models/cursos';
+import { CursosService } from 'src/app/services/cursos.service';
+
 
 @Component({
   selector: 'app-curso-detalle',
@@ -17,18 +22,26 @@ export class CursoDetallePage implements OnInit {
   publicaciones:PublicacionesMateria[] = [];
   nombreCurso: string;
   id:string;
+  cursos: Cursos[]=[];
   nombre:string;
   idEstudiante:string;
   textoBuscar = '';
+  mostrarBoton:boolean;
+  ayudantias:Ayudantes[]= [];
+  cursosMisAyudantias = [];
+  miId;
+  todosCursos = []; 
 
   resultado = [];
   constructor(private activateRoute: ActivatedRoute,
               private publicacionesService: PublicacionesService,
               private usuarioService: UsuarioService,
+              private ayudanteService: AyudantesService,
+              private cursoService: CursosService,
               private router: Router,) { }
 
   ngOnInit() {
-
+    this.miId = localStorage.getItem('userId');
     this.activateRoute.paramMap.subscribe(paramMap => {
       console.log(paramMap)
       const idCurso = paramMap.get('id');
@@ -41,9 +54,55 @@ export class CursoDetallePage implements OnInit {
       
     });
 
+    this.ayudanteService.getAyudantes().subscribe(res => {this.ayudantias = res;this.listaCursos();});
+
     this.publicacionesService.getPublicacionesMateria().subscribe(res=> this.publicaciones = res);
     this.usuarioService.getUsuarios().subscribe(res => this.usuarios = res);
   }
+
+
+  listaCursos(){
+    console.log('id: ',this.id)
+    for (let index = 0; index < this.ayudantias.length; index++) {
+      if(this.ayudantias[index].Usuario == this.miId){
+        this.cursosMisAyudantias.push(this.ayudantias[index].Materia)
+      }
+      
+
+    }
+    
+    this.validarCurso()
+    
+
+  }
+
+  // getCursos(){
+  //   this.cursoService.getCursos().subscribe(res => {this.cursos = res;this.llenarCursos();this.validarCurso()});
+  // }
+
+  //  llenarCursos(){
+  //   for (let index = 0; index < this.cursos.length; index++) {
+      
+  //       this.todosCursos.push(this.cursos[index].id)
+    
+      
+
+  //   }
+
+  // }
+
+  validarCurso(){
+    if(this.cursosMisAyudantias.includes(this.id)){
+      this.mostrarBoton = false;
+    }
+    else{
+      this.mostrarBoton = true;
+    }
+  }
+
+
+
+
 
   getDatos(){
     // this.ayudanteService.getAyudanteMateria(this.id).subscribe(res=> this.ayudantes = res);

@@ -37,7 +37,7 @@ export class UsuarioDetallePage implements OnInit {
               ) { }
 
   ngOnInit() {
-    this.myId= localStorage.getItem('userId')
+    this.myId = localStorage.getItem('userId')
     this.activateRoute.paramMap.subscribe(paramMap => {
       const idUsuario = paramMap.get('id');
       const idMateria = paramMap.get('idMateria');
@@ -49,7 +49,8 @@ export class UsuarioDetallePage implements OnInit {
 
 
     this.ayudantesService.getAyudantes().subscribe(res => {this.ayudantes = res;});
-    this.calificacionesService.getCalificaciones().subscribe(res => {this.calificaciones = res;});
+    this.calificacionesService.getCalificaciones().subscribe(res => {this.calificaciones = res;this.controlar();});
+    
   }
 
   like(){
@@ -68,6 +69,8 @@ export class UsuarioDetallePage implements OnInit {
       }
       
     }
+  this.click = true;
+  //this.controlar();
    
 
   }
@@ -88,25 +91,45 @@ export class UsuarioDetallePage implements OnInit {
       }
       
     }
+    this.click = true;
+    //this.controlar();
    
 
   }
 
 
-  controlar(num){ 
-    let validar;
+  controlar(){ 
+    let validar = true;
+    console.log(this.id);
+    console.log(this.idMateria);
+    console.log(this.myId);
+    console.log('--')
+
+
     
     for (let index = 0; index < this.calificaciones.length; index++) {
+      console.log('-')
+      console.log(this.calificaciones[index].Materia,this.calificaciones[index].Ayudante,this.calificaciones[index].Estudiante)
       if((this.calificaciones[index].Materia == this.idMateria) && (this.calificaciones[index].Ayudante == this.id)&& (this.calificaciones[index].Estudiante == this.myId)){
-        validar=false    
+        this.click = true;
+        validar = false;
+        console.log('holaa')
+        
       }
     }
-    
-    if (validar= false){
-      this.click= true;
-      if(num ==0){this.like()}
-      if(num ==1){this.dislike()}
+
+    if(validar){
+      this.click = false;
     }
+
+    
+    console.log(this.click)
+    
+    // if (validar= false){
+    //   this.click= true;
+    //   if(num ==0){this.like()}
+    //   if(num ==1){this.dislike()}
+    // }
 
   }
 }

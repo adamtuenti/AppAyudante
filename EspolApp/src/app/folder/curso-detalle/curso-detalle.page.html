@@ -81,12 +81,19 @@
         <ion-card-content>
           {{publicacion.Descripcion}}
 
-          Visitas:  {{publicacion.Visitas}}
         </ion-card-content>
 
       
       </ion-card>
     </ng-container>
+
+    <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button disabled="{{mostrarBoton}}" routerLink="/crear-ayudantia">
+       <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    
   </ng-container>
 
   <ng-container *ngIf="getDatos()">

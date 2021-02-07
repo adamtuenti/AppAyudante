@@ -1,12 +1,12 @@
 <ion-header >
   <ion-toolbar>
 
-    <ion-segment color="tertiary" value="mis-ayudantias" >
+    <ion-segment color="tertiary" value="perfil" >
 
-      <ion-segment-button *ngIf="Rol==Ayudante" value="mis-ayudantias" [routerLink]="['/mis-ayudantias']" routerDirection="root">
+      <!-- <ion-segment-button *ngIf="Rol==Ayudante" value="mis-ayudantias" [routerLink]="['/mis-ayudantias']" routerDirection="root">
         <ion-icon name="file-tray-stacked-outline" size="large"></ion-icon> 
         <ion-label style="font-size: 14;">Mis Cursos</ion-label>
-      </ion-segment-button>
+      </ion-segment-button> -->
 
       <ion-segment-button value="publicaciones" [routerLink]="['/publicaciones']" routerDirection="root">
         <ion-icon name="newspaper-outline" size="large"></ion-icon> 
@@ -36,20 +36,20 @@
 
 
 
-  <ng-container *ngFor="let curso of cursos">
+  <ng-container *ngFor="let curso of nuevosCursos">
 
-    <ng-container *ngFor="let ayudantia of ayudantias">
+    <ng-container *ngFor="let materia of cursos">
 
 
 
-      <ion-item *ngIf="ayudantia.Materia!=curso.id" style="padding: 2.5px;"  >
+      <ion-item *ngIf="curso==materia.id" style="padding: 2.5px;"  >
         <!-- [routerLink]="['/curso-detalle',curso.id, curso.Nombre]" -->
         <ion-thumbnail slot="start" slot="start">
-          <img src="{{curso.Imagen}}" alet="foto">
+          <img src="{{materia.Imagen}}" alet="foto">
         </ion-thumbnail>
-        <ion-card-title ><label style="font-size: 17.2px; font-weight: bold; ">{{curso.Nombre}}</label></ion-card-title>
+        <ion-card-title ><label style="font-size: 17.2px; font-weight: bold; ">{{materia.Nombre}}</label></ion-card-title>
 
-        <ion-icon slot="end" name="person-add-outline" (click)="crearAyudantia(curso.id)"></ion-icon>
+        <ion-icon slot="end" name="person-add-outline" (click)="crearAyudantia(materia.id)"></ion-icon>
       </ion-item>
   
 

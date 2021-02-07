@@ -16,6 +16,9 @@ export class CrearAyudantiaPage implements OnInit {
   cursos: Cursos[]=[];
   miId; 
   ayudantias:Ayudantes[]= [];
+  cursosMisAyudantias = [];
+  todosCursos = [];
+  nuevosCursos = [];
   public nuevoAyudante: Ayudantes=new Ayudantes();
 
   constructor(private ayudanteService: AyudantesService,
@@ -23,12 +26,67 @@ export class CrearAyudantiaPage implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-
-    this.ayudanteService.getAyudantes().subscribe(res => this.ayudantias = res);
-    this.cursoService.getCursos().subscribe(res => this.cursos = res);
     this.miId = localStorage.getItem('userId');
+    this.ayudanteService.getAyudantes().subscribe(res => {this.ayudantias = res;this.listaCursos();this.getCursos()});
+    
+    
+    
+
     
   }
+
+  getCursos(){
+    this.cursoService.getCursos().subscribe(res => {this.cursos = res;this.llenarCursos();this.nuevos()});
+    
+    
+  }
+
+  llenarCursos(){
+    for (let index = 0; index < this.cursos.length; index++) {
+      
+        this.todosCursos.push(this.cursos[index].id)
+    
+      
+
+    }
+
+  }
+
+  nuevos(){
+
+    for (let index = 0; index < this.todosCursos.length; index++) {
+      
+      if(this.cursosMisAyudantias.includes(this.todosCursos[index])){
+
+      }
+      else{
+        this.nuevosCursos.push(this.todosCursos[index])
+      }
+    
+      
+
+    }
+    console.log('hola',this.nuevosCursos)
+
+  }
+
+
+
+
+
+  listaCursos(){
+    for (let index = 0; index < this.ayudantias.length; index++) {
+      if(this.ayudantias[index].Usuario == this.miId){
+        this.cursosMisAyudantias.push(this.ayudantias[index].Materia)
+      }
+      
+
+    }
+    
+
+  }
+
+
 
 
   crearAyudantia(idAyudantia:string){
@@ -36,6 +94,8 @@ export class CrearAyudantiaPage implements OnInit {
     this.nuevoAyudante.Visitas = 0;
     this.nuevoAyudante.Materia = idAyudantia;
     this.nuevoAyudante.Usuario = this.miId;
+    this.nuevoAyudante.Like = 0;
+    this.nuevoAyudante.Dislike = 0;
 
                 
 
