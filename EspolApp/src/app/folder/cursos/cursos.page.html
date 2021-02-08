@@ -52,7 +52,7 @@
 
   </ion-card>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="crearCurso()">
      <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>

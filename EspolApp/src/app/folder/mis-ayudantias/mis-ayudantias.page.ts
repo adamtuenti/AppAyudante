@@ -5,6 +5,7 @@ import { AyudantesService } from 'src/app/services/ayudantes.service';
 
 import { CursosService } from 'src/app/services/cursos.service';
 
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-mis-ayudantias',
@@ -19,7 +20,8 @@ export class MisAyudantiasPage implements OnInit {
   textoBuscar='';
 
   constructor(private ayudanteService: AyudantesService,
-  private cursosService: CursosService) { }
+    private alertCtrt: AlertController,
+    private cursosService: CursosService) { }
 
   ngOnInit() {
     console.log( localStorage.getItem("userId"))
@@ -31,6 +33,35 @@ export class MisAyudantiasPage implements OnInit {
   buscar(event){
     const texto = event.target.value
     this.textoBuscar=texto;
+  }
+ 
+ 
+
+
+  async alert(id) {
+    const alert = await this.alertCtrt.create({
+     cssClass: 'my-custom-class',
+     header: "¿Desea eliminar esta materia de sus ayudantias?",
+    buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Elminar',
+          handler: (data) => {
+            this.remove(id)                  
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  remove(id){
+     this.ayudanteService.removeAyudante(id)
   }
 
   

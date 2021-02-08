@@ -16,6 +16,7 @@ export class CursosPage implements OnInit {
   textoBuscar='';
   userId;
   materia : MateriaSolicitud = new MateriaSolicitud();
+  rol;
 
   constructor(private cursoService: CursosService,
               private alertCtrt: AlertController,
@@ -25,6 +26,7 @@ export class CursosPage implements OnInit {
 
     this.cursoService.getCursos().subscribe(res => this.cursos = res);
     this.userId = localStorage.getItem('userId')
+    this.rol = localStorage.getItem('Rol')
   }
 
   buscar(event){

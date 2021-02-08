@@ -19,6 +19,8 @@ export class CrearAyudantiaPage implements OnInit {
   cursosMisAyudantias = [];
   todosCursos = [];
   nuevosCursos = [];
+  
+  textoBuscar='';
   public nuevoAyudante: Ayudantes=new Ayudantes();
 
   constructor(private ayudanteService: AyudantesService,
@@ -50,6 +52,13 @@ export class CrearAyudantiaPage implements OnInit {
 
     }
 
+  }
+
+  
+
+  buscar(event){
+    const texto = event.target.value
+    this.textoBuscar=texto;
   }
 
   nuevos(){

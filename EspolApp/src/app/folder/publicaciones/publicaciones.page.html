@@ -25,17 +25,39 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar
+    color="light" 
+    placeholder = "Buscar anuncio..."
+    animated
 
+    (ionChange)="buscar($event)">
+    </ion-searchbar>
 
-  <ion-card *ngFor="let publicacion of publicaciones" scrollable class = "item">
-    <ion-item>
+  <ng-container *ngIf="!getDatos()">
+    <ng-container *ngFor="let publicacion of publicaciones | filtroAnuncio: textoBuscar">
+      <ion-card    > 
+                
+        <ion-card-header>
 
+          <ion-item>
+ 
+          <ion-card-title>{{publicacion.Titulo}}</ion-card-title>
+         
+        <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
+          <ng-container *ngIf="miId == publicacion.Estudiante">
+            <ion-icon name="create-outline" slot='end'></ion-icon>
+            <ion-icon name="trash-outline" slot='end' color='danger'(click)="alert(publicacion.id)"></ion-icon>
+          </ng-container>
+        </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+          {{publicacion.Descripcion}}
 
-      <ion-card-title>{{publicacion.Titulo}}</ion-card-title>
-    </ion-item>
-  
-
-  </ion-card>
+        </ion-card-content>
+      
+      </ion-card>
+    </ng-container>
+  </ng-container>
 
   
 

@@ -50,9 +50,12 @@
             <ion-thumbnail slot="start" slot="start">
               <img src="{{curso.Imagen}}" alet="foto">
             </ion-thumbnail>
-            <ion-card-title>{{curso.Nombre}}</ion-card-title>
+            <ion-card-title style="font-size: 17.2px;">{{curso.Nombre}}</ion-card-title>
 
+            
             <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{ayudante.Visitas}}</label></ion-button>
+            <ion-icon name="trash-outline" slot='end' color="danger" (click)="alert(ayudante.id)"></ion-icon>
+
           </ion-item>
         
       

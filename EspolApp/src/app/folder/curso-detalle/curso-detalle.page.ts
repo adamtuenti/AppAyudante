@@ -10,6 +10,7 @@ import { AyudantesService } from 'src/app/services/ayudantes.service';
 import { Cursos } from 'src/app/models/cursos';
 import { CursosService } from 'src/app/services/cursos.service';
 
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-curso-detalle',
@@ -26,16 +27,17 @@ export class CursoDetallePage implements OnInit {
   nombre:string;
   idEstudiante:string;
   textoBuscar = '';
-  mostrarBoton:boolean;
   ayudantias:Ayudantes[]= [];
   cursosMisAyudantias = [];
   miId;
-  todosCursos = []; 
+  todosCursos = [];
+  rol;
 
   resultado = [];
   constructor(private activateRoute: ActivatedRoute,
               private publicacionesService: PublicacionesService,
               private usuarioService: UsuarioService,
+              private alertCtrt: AlertController,
               private ayudanteService: AyudantesService,
               private cursoService: CursosService,
               private router: Router,) { }
@@ -53,6 +55,7 @@ export class CursoDetallePage implements OnInit {
       //this.actividadService.getActividad(idActividad).subscribe(res => this.actividad =res);
       
     });
+    this.rol = localStorage.getItem('Rol')
 
     this.ayudanteService.getAyudantes().subscribe(res => {this.ayudantias = res;this.listaCursos();});
 
@@ -71,7 +74,6 @@ export class CursoDetallePage implements OnInit {
 
     }
     
-    this.validarCurso()
     
 
   }
@@ -93,11 +95,41 @@ export class CursoDetallePage implements OnInit {
 
   validarCurso(){
     if(this.cursosMisAyudantias.includes(this.id)){
-      this.mostrarBoton = false;
+     // this.mostrarBoton = false;//mostrar mensaje.
+      this.router.navigateByUrl("/crear-")
+
     }
     else{
-      this.mostrarBoton = true;
+      this.failedAlert();
+     // this.router.navigate(['/crear-ayudantia'])
+     // this.mostrarBoton = true;//redireccionar a la pagina
     }
+
+  }
+  async failedAlert() {
+    const alert = await this.alertCtrt.create({
+     cssClass: 'my-custom-class',
+     header: "No estas registrado como ayudante en esta materia",
+    buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Registrar materia',
+          handler: (data) => {
+            this.router.navigate(['/crear-ayudantia']);
+            
+            console.log('registrar')
+          
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
 
@@ -132,6 +164,8 @@ export class CursoDetallePage implements OnInit {
       console.log("ingreso")
     
   }
+
+
 
   buscar(event){
     const texto = event.target.value

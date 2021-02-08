@@ -8,8 +8,11 @@ import { CrearAyudantiaPageRoutingModule } from './crear-ayudantia-routing.modul
 
 import { CrearAyudantiaPage } from './crear-ayudantia.page';
 
+import { PipesModule } from 'src/app/pipes/pipes.module';
+
 @NgModule({
   imports: [
+    PipesModule,
     CommonModule,
     FormsModule,
     IonicModule,

@@ -87,11 +87,11 @@
       </ion-card>
     </ng-container>
 
-    <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button disabled="{{mostrarBoton}}" routerLink="/crear-ayudantia">
+    <!-- <ion-fab  *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="validarCurso()">
        <ion-icon name="add-outline"></ion-icon>
       </ion-fab-button>
-    </ion-fab>
+    </ion-fab> -->
 
     
   </ng-container>
@@ -107,14 +107,20 @@
       </ion-text>  
     </div>
 
-    <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button disabled="{{mostrarBoton}}" routerLink="/crear-ayudantia">
+    <!-- <ion-fab  *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="validarCurso()">
        <ion-icon name="add-outline"></ion-icon>
       </ion-fab-button>
-    </ion-fab>
+    </ion-fab> -->
 
     
   </ng-container>
+
+     <ion-fab  *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="validarCurso()">
+       <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
 
 </ion-content>

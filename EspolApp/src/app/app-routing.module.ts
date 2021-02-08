@@ -119,6 +119,10 @@ const routes: Routes = [
   },  {
     path: 'sugerencias',
     loadChildren: () => import('./folder/sugerencias/sugerencias.module').then( m => m.SugerenciasPageModule)
+  },
+  {
+    path: 'editar-publicacion',
+    loadChildren: () => import('./folder/editar-publicacion/editar-publicacion.module').then( m => m.EditarPublicacionPageModule)
   }
 
 
