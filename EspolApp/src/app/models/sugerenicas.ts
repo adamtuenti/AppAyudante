@@ -4,4 +4,5 @@ export class Sugerencias {
     Usuario: string;
     Visibilidad: boolean;
     Titulo: string;
+    Telefono: string;
 }

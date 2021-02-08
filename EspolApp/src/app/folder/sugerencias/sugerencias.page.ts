@@ -27,6 +27,7 @@ export class SugerenciasPage implements OnInit {
     this.sugerencia.Detalle = form.value.descripcion;
     this.sugerencia.Visibilidad =true;
     this.sugerencia.Usuario = localStorage.getItem('userId')
+    this.sugerencia.Telefono = localStorage.getItem('Telefono');
     this.sugerenciaService.addSugerencias(this.sugerencia)
       .then( res => {this.failedAlert()})
       .catch()

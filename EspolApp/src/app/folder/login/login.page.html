@@ -1,11 +1,7 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
-<ion-card>
+<ion-card style="margin-top:75px">
     <ion-list>
     <ion-img src="../../assets/logo.PNG" alt="hola"></ion-img>
     </ion-list>
@@ -15,22 +11,28 @@
         
         <ion-item>
           <ion-label><ion-icon name="mail-outline"></ion-icon><ion-text color="danger"></ion-text></ion-label>
-          <ion-input required placeholder="email" name="email" type='email' ngModel required></ion-input>
+          <ion-input required placeholder="Correo" name="email" type='email' ngModel required></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label><ion-icon name="key-outline"></ion-icon> <ion-text color="danger"></ion-text></ion-label>
-          <ion-input placeholder="password" name="password" type='password' ngModel required></ion-input>
+          <ion-input placeholder="Contraseña" name="password" type='password' ngModel required></ion-input>
         </ion-item>
       </ion-list>
 
-      <div class="ion-padding">
-        <ion-button  style="background-color:aquamarine" shape="round" type="submit"  [disabled]="form.invalid" expand="block">
+      <div class="ion-padding" align="center">
+        <ion-button  style="background-color:aquamarine;width: 150px;" shape="round" type="submit"  [disabled]="form.invalid" expand="block">
           Ingresar
         </ion-button>
-        <p (click)="presentResetPassword()" class="small-text">Restablecer contraseña</p>
-        <p class="small-text" routerLink="/registro" routerDirection="root">Crear cuenta</p>
+        
       </div>
+
+      <div align="center" style="margin-top:21px">
+        <p (click)="presentResetPassword()" style="font-size:15px">Restablecer contraseña</p>
+        <p style="font-size:15px" routerLink="/registro" routerDirection="root">Crear cuenta</p>
+
+      </div>
+
     </form>
   </ion-card>
 </ion-content>

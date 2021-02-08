@@ -14,12 +14,12 @@ export class MateriaSolicitudService {
     private materias: Observable<MateriaSolicitud[]>;
 
     constructor(firestore: AngularFirestore) {
-      this.cursosCollection = firestore.collection('MateriasSolicitud');
+      this.materiasCollection = firestore.collection('MateriasSolicitud');
    
     }
   
     addMateria(MateriaSolicitud:MateriaSolicitud){
-      return this.cursosCollection.add({...MateriaSolicitud})
+      return this.materiasCollection.add({...MateriaSolicitud})
     }
 
 

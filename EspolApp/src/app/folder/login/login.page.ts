@@ -44,6 +44,7 @@ export class LoginPage implements OnInit {
             localStorage.setItem('email',res.Correo);
             localStorage.setItem('Estado',res.Estado)
             localStorage.setItem('Rol',res.Rol);
+            localStorage.setItem('Telefono',res.Telefono);
           if(localStorage.getItem('Estado')== "P"){
             this.router.navigateByUrl('/pendiente');}
           else if(localStorage.getItem('Estado')== "A"){

@@ -68,8 +68,12 @@ export class RegistroPage implements OnInit {
   async RegistrarUser(form):Promise<void>{
     this.presentLoading("Espere por favor...");
     var telefono = form.value.telefono;
+    var primeros = telefono.slice(0,3);
     if(telefono.length==10){
       telefono = '+593' + telefono.slice(1,telefono.length);
+    }
+    else if(primeros == '+593'){
+      telefono = telefono
     }
     console.log(telefono)
     
@@ -117,7 +121,7 @@ export class RegistroPage implements OnInit {
       auth=>{
         this.loading.dismiss();
         
-          this.router.navigateByUrl("/home")
+          this.router.navigateByUrl("/pendiente")
        
        
       }  
