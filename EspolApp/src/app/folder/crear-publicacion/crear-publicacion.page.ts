@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 
 
-import { Publicaciones } from 'src/app/models/publicaciones';
+
+import { PublicacionesMateria } from 'src/app/models/publicaciones-materia';
 import { PublicacionesService } from 'src/app/services/publicaciones.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { PublicacionesService } from 'src/app/services/publicaciones.service';
   styleUrls: ['./crear-publicacion.page.scss'],
 })
 export class CrearPublicacionPage implements OnInit {
-  public publicacion: Publicaciones=new Publicaciones();
+  public publicacion: PublicacionesMateria=new PublicacionesMateria();
   loading: any;
   constructor(
     private router: Router,
@@ -30,9 +31,11 @@ export class CrearPublicacionPage implements OnInit {
     this.publicacion.Descripcion = form.value.descripcion
     this.publicacion.Estudiante = localStorage.getItem('userId')
     this.publicacion.Fecha = fechaActual.toString();
+    this.publicacion.Visitas = 0;
+    this.publicacion.Foto="";
 
 
-    this.publicacionesService.addPublicaciones(this.publicacion).then(
+    this.publicacionesService.addPublicacionesMateria(this.publicacion).then(
       auth=>{
         this.loading.dismiss();
         this.router.navigateByUrl("/publicaciones")

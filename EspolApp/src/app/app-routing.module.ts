@@ -61,7 +61,7 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-    path: 'crear-publicacion',
+    path: 'crear-publicacion/:id',
     loadChildren: () => import('./folder/crear-publicacion/crear-publicacion.module').then( m => m.CrearPublicacionPageModule),
     canActivate:[AuthGuard]
   },
@@ -91,7 +91,8 @@ const routes: Routes = [
   // },
   {
     path: 'mis-ayudantias',
-    loadChildren: () => import('./folder/mis-ayudantias/mis-ayudantias.module').then( m => m.MisAyudantiasPageModule)
+    loadChildren: () => import('./folder/mis-ayudantias/mis-ayudantias.module').then( m => m.MisAyudantiasPageModule),
+    canActivate:[AuthGuard]
   },
   // {
   //   path: 'mis-ayudantias-anuncios',
@@ -103,30 +104,34 @@ const routes: Routes = [
   // },
   {
     path: 'crear-ayudantia',
-    loadChildren: () => import('./folder/crear-ayudantia/crear-ayudantia.module').then( m => m.CrearAyudantiaPageModule)
+    loadChildren: () => import('./folder/crear-ayudantia/crear-ayudantia.module').then( m => m.CrearAyudantiaPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'mis-ayudantias-anuncios',
-    loadChildren: () => import('./folder/mis-ayudantias-anuncios/mis-ayudantias-anuncios.module').then( m => m.MisAyudantiasAnunciosPageModule)
+    loadChildren: () => import('./folder/mis-ayudantias-anuncios/mis-ayudantias-anuncios.module').then( m => m.MisAyudantiasAnunciosPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'solicitud-ayudantia',
-    loadChildren: () => import('./folder/solicitud-ayudantia/solicitud-ayudantia.module').then( m => m.SolicitudAyudantiaPageModule)
+    loadChildren: () => import('./folder/solicitud-ayudantia/solicitud-ayudantia.module').then( m => m.SolicitudAyudantiaPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'solicitud-materia',
-    loadChildren: () => import('./folder/solicitud-materia/solicitud-materia.module').then( m => m.SolicitudMateriaPageModule)
-  },  {
-    path: 'sugerencias',
-    loadChildren: () => import('./folder/sugerencias/sugerencias.module').then( m => m.SugerenciasPageModule)
+    loadChildren: () => import('./folder/solicitud-materia/solicitud-materia.module').then( m => m.SolicitudMateriaPageModule),
+    canActivate:[AuthGuard]
   },
   {
-    path: 'editar-publicacion',
-    loadChildren: () => import('./folder/editar-publicacion/editar-publicacion.module').then( m => m.EditarPublicacionPageModule)
+    path: 'sugerencias',
+    loadChildren: () => import('./folder/sugerencias/sugerencias.module').then( m => m.SugerenciasPageModule),
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'editar-publicacion/:id/:redireccion',
+    loadChildren: () => import('./folder/editar-publicacion/editar-publicacion.module').then( m => m.EditarPublicacionPageModule),
+    canActivate:[AuthGuard]
   }
-
-
-
 
 ];
 

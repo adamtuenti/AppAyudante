@@ -32,6 +32,10 @@ export class PublicacionesPage implements OnInit {
     
   } 
 
+  redireccionar(id){
+    this.router.navigate(['/editar-publicacion',id,"Publicacion"])
+  }
+
   getDatos(){    
     for(let i= 0; i<this.publicaciones.length; i++){
       return false    

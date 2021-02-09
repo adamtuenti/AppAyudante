@@ -78,21 +78,6 @@ export class CursoDetallePage implements OnInit {
 
   }
 
-  // getCursos(){
-  //   this.cursoService.getCursos().subscribe(res => {this.cursos = res;this.llenarCursos();this.validarCurso()});
-  // }
-
-  //  llenarCursos(){
-  //   for (let index = 0; index < this.cursos.length; index++) {
-      
-  //       this.todosCursos.push(this.cursos[index].id)
-    
-      
-
-  //   }
-
-  // }
-
   validarCurso(){
     if(this.cursosMisAyudantias.includes(this.id)){
      // this.mostrarBoton = false;//mostrar mensaje.
@@ -106,6 +91,7 @@ export class CursoDetallePage implements OnInit {
     }
 
   }
+
   async failedAlert() {
     const alert = await this.alertCtrt.create({
      cssClass: 'my-custom-class',
@@ -137,32 +123,21 @@ export class CursoDetallePage implements OnInit {
 
 
   getDatos(){
-    // this.ayudanteService.getAyudanteMateria(this.id).subscribe(res=> this.ayudantes = res);
-    // console.log(this.ayudantes)
-
     for(let i= 0; i<this.publicaciones.length; i++){
       if(this.publicaciones[i].Materia == this.id){
-      
-            return false;
-          }
+        return false;
+      }
     }
     return true;
-
-
   }
-
-  
-
 
   aumentarVisita(id:string,publicacion:PublicacionesMateria){
     publicacion.Visitas= publicacion.Visitas + 1
     console.log("fff", publicacion.Visitas)
     //[routerLink]="['/curso-detalle-anuncio',publicacion.id]"
     this.publicacionesService.updatePublicacionesMateria(id,publicacion)
-   
       this.router.navigate(['/curso-detalle-anuncio',publicacion.id]);
-      console.log("ingreso")
-    
+      console.log("ingreso")   
   }
 
 
@@ -170,6 +145,38 @@ export class CursoDetallePage implements OnInit {
   buscar(event){
     const texto = event.target.value
     this.textoBuscar=texto;
+  }
+
+  redireccionar(id){
+    this.router.navigate(['/editar-publicacion',id,"Curso"])
+  }
+
+  async alert(id) {
+    const alert = await this.alertCtrt.create({
+     cssClass: 'my-custom-class',
+     header: "¿Desea eliminar esta publicación?",
+    buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, 
+        {
+          text: 'Elminar',
+          handler: (data) => {
+            this.remove(id)                  
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  remove(id){
+     this.publicacionesService.removePublicacionesMateria(id)
   }
 
 }

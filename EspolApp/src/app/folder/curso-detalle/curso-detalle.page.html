@@ -31,8 +31,6 @@
 
 
 <ion-content>
-
-
   <ion-segment color="tertiary" value="anuncios">
 
     <ion-segment-button value="anuncios" layout="icon-start" [routerLink]="['/curso-detalle',id, nombreCurso]" routerDirection="root">
@@ -42,85 +40,51 @@
     <ion-segment-button value="ayudantes" layout="icon-start"  [routerLink]="['/curso-ayudantes',id, nombreCurso]" routerDirection="root">
       <ion-icon name="people-outline" size="large"></ion-icon> <ion-label>Ayudantes</ion-label>
     </ion-segment-button>
-
    
   </ion-segment>
-
-  <!-- <ion-item style="align-items: center;background-color: aqua;">
-    <ion-label style="font-size: 15.5px;font-weight: bold;text-align: center;margin-top: 1.5px;margin-bottom: 1.5px;">{{nombreCurso}}</ion-label>
-  </ion-item> -->
 
   <ion-searchbar
     color="light" 
     placeholder = "Buscar anuncio..."
     animated
-
     (ionChange)="buscar($event)">
-    </ion-searchbar>
+  </ion-searchbar>
 
 
   <ng-container *ngIf="!getDatos()">
     <ng-container *ngFor="let publicacion of publicaciones | filtroAnuncio: textoBuscar">
-      <ion-card *ngIf="publicacion.Materia == id"  (click)='aumentarVisita(publicacion.id,publicacion)'  > 
-        
-        
+      <ion-card *ngIf="publicacion.Materia == id"> 
         <ion-card-header>
-
-
           <ion-item>
-
-
-          
-
-          <ion-card-title>{{publicacion.Titulo}}</ion-card-title>
-         
-        <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
-        
-        </ion-item>
+            <ion-card-title  (click)='aumentarVisita(publicacion.id,publicacion)'>{{publicacion.Titulo}}</ion-card-title>
+     
+            <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
+            <ng-container *ngIf="miId == publicacion.Estudiante">
+                <ion-icon name="create-outline" slot='end'  (click)="redireccionar(publicacion.id)"></ion-icon>
+                <ion-icon name="trash-outline" slot='end' color='danger'(click)="alert(publicacion.id)"></ion-icon>
+              </ng-container>
+            </ion-item>
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-content  (click)='aumentarVisita(publicacion.id,publicacion)'>
           {{publicacion.Descripcion}}
-
-        </ion-card-content>
-
-      
+        </ion-card-content>  
       </ion-card>
     </ng-container>
-
-    <!-- <ion-fab  *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="validarCurso()">
-       <ion-icon name="add-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab> -->
-
-    
   </ng-container>
 
   <ng-container *ngIf="getDatos()">
     <br><br><br><br><br><br>
     <div class="ion-text-center">
       <ion-text color="medium">
-
         <img src="https://i1.wp.com/codigoespagueti.com/wp-content/uploads/2020/04/Yamcha-muerto.png?resize=1200%2C720&quality=80&ssl=1" style="width: 55%; height:72%;" alet="foto">
-        
         <p style="font-size: 25px;">No hay anuncios registrados.</p>
       </ion-text>  
-    </div>
-
-    <!-- <ion-fab  *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="validarCurso()">
-       <ion-icon name="add-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab> -->
-
-    
+    </div>   
   </ng-container>
 
-     <ion-fab  *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button (click)="validarCurso()">
-       <ion-icon name="add-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-
-
+  <ion-fab  *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="validarCurso()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

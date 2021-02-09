@@ -45,14 +45,14 @@
          
         <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
           <ng-container *ngIf="miId == publicacion.Estudiante">
-            <ion-icon name="create-outline" slot='end'></ion-icon>
+            <ion-icon name="create-outline" slot='end'  (click)="redireccionar(publicacion.id)"></ion-icon>
             <ion-icon name="trash-outline" slot='end' color='danger'(click)="alert(publicacion.id)"></ion-icon>
           </ng-container>
         </ion-item>
         </ion-card-header>
         <ion-card-content>
           {{publicacion.Descripcion}}
-
+ 
         </ion-card-content>
       
       </ion-card>
