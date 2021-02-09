@@ -7,5 +7,6 @@ export class PublicacionesMateria {
     Foto: string;
     Titulo: string;
     Visitas: number;
+    Rol:string;
     
 }

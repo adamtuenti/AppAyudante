@@ -6,4 +6,5 @@ export class Publicaciones {
     Titulo: string;
     Visitas: number;
     Rol:string;
+    Materia:string;
 }
