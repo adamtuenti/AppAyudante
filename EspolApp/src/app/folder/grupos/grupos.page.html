@@ -61,7 +61,7 @@
   
 
   <ion-card  *ngIf="id==grupo.Materia" scrollable class = "item">
-    <ion-item [routerLink]="['/grupo-detalle',grupo.id, grupo.Nombre]" >
+    <ion-item [routerLink]="['/grupos-detalle',grupo.id]" >
 
       <ion-thumbnail slot="start" slot="start">
         <img src="{{grupo.Imagen}}" alet="foto">
@@ -75,7 +75,7 @@
 </ng-container>
 
   <ion-fab *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="crearCurso()">
+    <ion-fab-button [routerLink]="['/crear-grupo',id]">
      <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>

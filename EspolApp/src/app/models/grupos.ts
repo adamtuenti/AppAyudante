@@ -5,4 +5,5 @@ export class Grupos {
     Link:string;
     Descripcion:string;
     Materia:string;
+    Usuario:string
 }

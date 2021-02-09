@@ -137,9 +137,14 @@ const routes: Routes = [
     loadChildren: () => import('./folder/grupos/grupos.module').then( m => m.GruposPageModule)
   },
   {
-    path: 'grupos-detalle',
+    path: 'grupos-detalle/:id',
     loadChildren: () => import('./folder/grupos-detalle/grupos-detalle.module').then( m => m.GruposDetallePageModule)
+  },
+  {
+    path: 'crear-grupo/:id',
+    loadChildren: () => import('./folder/crear-grupo/crear-grupo.module').then( m => m.CrearGrupoPageModule)
   }
+
 
 
 ];

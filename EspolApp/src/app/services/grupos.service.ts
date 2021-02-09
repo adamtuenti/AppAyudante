@@ -32,6 +32,10 @@ export class GruposService {
       return this.gruposCollection.doc<Grupos>(id).valueChanges();
     }
 
+    addGrupo(Grupos:Grupos){
+      return this.gruposCollection.add({...Grupos});
+    }
+
 
 
 
