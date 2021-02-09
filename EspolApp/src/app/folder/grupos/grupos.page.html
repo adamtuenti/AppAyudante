@@ -1,0 +1,85 @@
+<ion-header >
+  <ion-toolbar>
+
+    <ion-segment color="tertiary" value="cursos" >
+ 
+      <!-- <ion-segment-button *ngIf="Rol==Ayudante" value="mis-ayudantias" [routerLink]="['/mis-ayudantias']" routerDirection="root">
+        <ion-icon name="file-tray-stacked-outline" size="large"></ion-icon> 
+        <ion-label style="font-size: 14;">Mis Cursos</ion-label>
+      </ion-segment-button> -->
+
+      <ion-segment-button value="publicaciones" [routerLink]="['/publicaciones']" routerDirection="root">
+        <ion-icon name="newspaper-outline" size="large"></ion-icon> 
+        <ion-label style="font-size: 14;">Publicaciones</ion-label>
+      </ion-segment-button>
+      
+      <ion-segment-button value="cursos" [routerLink]="['/cursos']" routerDirection="root">
+        <ion-icon name="library-outline" size="large"></ion-icon> <ion-label style="font-size: 14px;">Cursos</ion-label>
+      </ion-segment-button>
+    
+    
+      <ion-segment-button value="perfil" [routerLink]="['/perfil']" routerDirection="root">
+        <ion-icon name="person-circle-outline" size="large"></ion-icon> <ion-label style="font-size: 12px;">Perfil</ion-label>
+      </ion-segment-button>
+
+  
+
+  
+
+</ion-segment>
+
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment color="tertiary" value="grupos">
+
+    <ion-segment-button value="anuncios" layout="icon-start" [routerLink]="['/curso-detalle',id, nombreCurso]" routerDirection="root">
+      <ion-icon name="megaphone-outline" size="large"></ion-icon> <ion-label>Anuncios</ion-label>
+    </ion-segment-button>
+    
+    <ion-segment-button value="ayudantes" layout="icon-start"  [routerLink]="['/curso-ayudantes',id, nombreCurso]" routerDirection="root">
+      <ion-icon name="people-outline" size="large"></ion-icon> <ion-label>Ayudantes</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="grupos" layout="icon-start"  [routerLink]="['/curso-ayudantes',id, nombreCurso]" routerDirection="root">
+      <ion-icon name="people-circle-outline" size="large"></ion-icon> <ion-label>Grupos</ion-label>
+    </ion-segment-button>
+   
+  </ion-segment>
+
+  <ion-searchbar
+    color="light" 
+    placeholder = "Buscar grupo..."
+    animated
+    (ionChange)="buscar($event)">
+  </ion-searchbar>
+
+  <ng-container *ngFor="let grupo of grupos | filtroCurso: textoBuscar">
+
+
+  
+
+  <ion-card  *ngIf="id==grupo.Materia" scrollable class = "item">
+    <ion-item [routerLink]="['/grupo-detalle',grupo.id, grupo.Nombre]" >
+
+      <ion-thumbnail slot="start" slot="start">
+        <img src="{{grupo.Imagen}}" alet="foto">
+      </ion-thumbnail>
+      <ion-card-title>{{grupo.Nombre}}</ion-card-title>
+    </ion-item>
+  
+
+    </ion-card>
+
+</ng-container>
+
+  <ion-fab *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="crearCurso()">
+     <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  
+
+</ion-content>

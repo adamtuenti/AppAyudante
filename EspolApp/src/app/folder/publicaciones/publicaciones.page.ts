@@ -48,6 +48,17 @@ export class PublicacionesPage implements OnInit {
     this.textoBuscar=texto;
   }
 
+  aumentarVisita(id:string,publicacion:PublicacionesMateria){
+    publicacion.Visitas= publicacion.Visitas + 1
+    console.log("fff", publicacion.Visitas)
+    //[routerLink]="['/curso-detalle-anuncio',publicacion.id]"
+    this.publicacionesService.updatePublicacionesMateria(id,publicacion)
+      this.router.navigate(['/curso-detalle-anuncio',publicacion.id]);
+      console.log("ingreso")   
+  }
+
+  
+
   async alert(id) {
     const alert = await this.alertCtrt.create({
      cssClass: 'my-custom-class',

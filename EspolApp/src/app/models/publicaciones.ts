@@ -5,4 +5,5 @@ export class Publicaciones {
     Fecha: string;
     Titulo: string;
     Visitas: number;
+    Rol:string;
 }

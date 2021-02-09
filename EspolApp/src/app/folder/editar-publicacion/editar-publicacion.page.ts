@@ -18,6 +18,7 @@ export class EditarPublicacionPage implements OnInit {
   file: File;
   id: string;
   redireccion: string;
+  image;
   constructor(
     private router: Router,
     private angularFireStorage: AngularFireStorage,
@@ -33,7 +34,7 @@ export class EditarPublicacionPage implements OnInit {
       const id = paramMap.get('id');
       this.redireccion = paramMap.get('redireccion');
       this.id =id;
-    this.publicacionesService.getPublicacionMateria(id).subscribe(res=> this.publicacion = res);
+    this.publicacionesService.getPublicacionMateria(id).subscribe(res=> {this.publicacion = res;this.image = res.Foto});
     });
   }
 

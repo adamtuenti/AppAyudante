@@ -131,7 +131,16 @@ const routes: Routes = [
     path: 'editar-publicacion/:id/:redireccion',
     loadChildren: () => import('./folder/editar-publicacion/editar-publicacion.module').then( m => m.EditarPublicacionPageModule),
     canActivate:[AuthGuard]
+  },
+  {
+    path: 'grupos/:id/:nombre',
+    loadChildren: () => import('./folder/grupos/grupos.module').then( m => m.GruposPageModule)
+  },
+  {
+    path: 'grupos-detalle',
+    loadChildren: () => import('./folder/grupos-detalle/grupos-detalle.module').then( m => m.GruposDetallePageModule)
   }
+
 
 ];
 

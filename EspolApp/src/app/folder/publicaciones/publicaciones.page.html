@@ -35,13 +35,13 @@
 
   <ng-container *ngIf="!getDatos()">
     <ng-container *ngFor="let publicacion of publicaciones | filtroAnuncio: textoBuscar">
-      <ion-card    > 
+      <ion-card  > 
                 
         <ion-card-header>
 
           <ion-item>
  
-          <ion-card-title>{{publicacion.Titulo}}</ion-card-title>
+          <ion-card-title (click)='aumentarVisita(publicacion.id,publicacion)'>{{publicacion.Titulo}}</ion-card-title>
          
         <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
           <ng-container *ngIf="miId == publicacion.Estudiante">
@@ -50,7 +50,7 @@
           </ng-container>
         </ion-item>
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-content (click)='aumentarVisita(publicacion.id,publicacion)'>
           {{publicacion.Descripcion}}
  
         </ion-card-content>
