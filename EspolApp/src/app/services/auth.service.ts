@@ -48,7 +48,7 @@ export class AuthService {
           Nombre: nombre,
           Premium: false,
           Publicaciones: 0,
-          Rol: 'estudiante',
+          Rol: 'Estudiante',
           Telefono: telefono,
           Universidad: 'Espol',
          // Verificacion: false,

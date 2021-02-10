@@ -34,15 +34,15 @@
 <ion-content>
   <ion-segment color="tertiary" value="grupos">
 
-    <ion-segment-button value="anuncios" layout="icon-start" [routerLink]="['/curso-detalle',id, nombreCurso]" routerDirection="root">
+    <ion-segment-button value="anuncios" [routerLink]="['/curso-detalle',id, nombreCurso]" routerDirection="root">
       <ion-icon name="megaphone-outline" size="large"></ion-icon> <ion-label>Anuncios</ion-label>
     </ion-segment-button>
     
-    <ion-segment-button value="ayudantes" layout="icon-start"  [routerLink]="['/curso-ayudantes',id, nombreCurso]" routerDirection="root">
+    <ion-segment-button value="ayudantes" [routerLink]="['/curso-ayudantes',id, nombreCurso]" routerDirection="root">
       <ion-icon name="people-outline" size="large"></ion-icon> <ion-label>Ayudantes</ion-label>
     </ion-segment-button>
 
-    <ion-segment-button value="grupos" layout="icon-start"  [routerLink]="['/curso-ayudantes',id, nombreCurso]" routerDirection="root">
+    <ion-segment-button value="grupos" [routerLink]="['/curso-ayudantes',id, nombreCurso]" routerDirection="root">
       <ion-icon name="people-circle-outline" size="large"></ion-icon> <ion-label>Grupos</ion-label>
     </ion-segment-button>
    
