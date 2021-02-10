@@ -1,7 +1,7 @@
 <ion-header >
   <ion-toolbar>
 
-    <ion-segment color="tertiary" value="cursos" >
+    <ion-segment color="tertiary" value="publicaciones" >
 
       <ion-segment-button value="publicaciones" [routerLink]="['/publicaciones']" routerDirection="root">
         <ion-icon name="newspaper-outline" size="large"></ion-icon> 
@@ -35,6 +35,19 @@
         <ion-label>Descripción: </ion-label>
         <ion-textarea required placeholder="Descripción" name="descripcion" type='text' ngModel required></ion-textarea>
       </ion-item>
+
+    <ion-item *ngIf="rol == 'Ayudante'">
+    <ion-label>Seleccione un curso: </ion-label>
+    <ion-select required  name='curso' ngModel>
+      <ng-container  *ngFor="let ayudante of ayudantias">
+        <ng-container *ngFor="let curso of cursos">
+          <ng-container *ngIf="(ayudante.Usuario == miId) && (ayudante.Materia == curso.id)">
+            <ion-select-option value="{{curso.id}}">{{curso.Nombre}}</ion-select-option>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ion-select>
+  </ion-item>
 
       <ion-item>
             <ion-label><ion-icon name="image-outline"></ion-icon>Seleccionar Foto <ion-text color=""></ion-text></ion-label>

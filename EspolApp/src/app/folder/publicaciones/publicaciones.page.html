@@ -35,14 +35,10 @@
 
   <ng-container *ngIf="!getDatos()">
     <ng-container *ngFor="let publicacion of publicaciones | filtroAnuncio: textoBuscar">
-      <ion-card  > 
-                
+      <ion-card  *ngIf="rol == 'Ayudante'">         
         <ion-card-header>
-
           <ion-item>
- 
-          <ion-card-title (click)='aumentarVisita(publicacion.id,publicacion)'>{{publicacion.Titulo}}</ion-card-title>
-         
+          <ion-card-title (click)='aumentarVisita(publicacion.id,publicacion)'>{{publicacion.Titulo}}</ion-card-title>  
         <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
           <ng-container *ngIf="miId == publicacion.Estudiante">
             <ion-icon name="create-outline" slot='end'  (click)="redireccionar(publicacion.id)"></ion-icon>
@@ -52,13 +48,32 @@
         </ion-card-header>
         <ion-card-content (click)='aumentarVisita(publicacion.id,publicacion)'>
           {{publicacion.Descripcion}}
- 
         </ion-card-content>
-      
+      </ion-card>
+
+      <ion-card  *ngIf="((rol == 'Estudiante') && ('Ayudante' == publicacion.Rol))||(rol == 'Estudiante' && publicacion.Estudiante == miId)">         
+        <ion-card-header>
+          <ion-item>
+          <ion-card-title (click)='aumentarVisita(publicacion.id,publicacion)'>{{publicacion.Titulo}}</ion-card-title>  
+        <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
+          <ng-container *ngIf="miId == publicacion.Estudiante">
+            <ion-icon name="create-outline" slot='end'  (click)="redireccionar(publicacion.id)"></ion-icon>
+            <ion-icon name="trash-outline" slot='end' color='danger'(click)="alert(publicacion.id)"></ion-icon>
+          </ng-container>
+        </ion-item>
+        </ion-card-header>
+        <ion-card-content (click)='aumentarVisita(publicacion.id,publicacion)'>
+          {{publicacion.Descripcion}}
+        </ion-card-content>
       </ion-card>
     </ng-container>
   </ng-container>
 
   
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/crear-publicacion-todos']" routerDirection="root">
+     <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

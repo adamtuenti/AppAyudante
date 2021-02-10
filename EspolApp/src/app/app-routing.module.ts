@@ -134,16 +134,25 @@ const routes: Routes = [
   },
   {
     path: 'grupos/:id/:nombre',
-    loadChildren: () => import('./folder/grupos/grupos.module').then( m => m.GruposPageModule)
+    loadChildren: () => import('./folder/grupos/grupos.module').then( m => m.GruposPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'grupos-detalle/:id',
-    loadChildren: () => import('./folder/grupos-detalle/grupos-detalle.module').then( m => m.GruposDetallePageModule)
+    loadChildren: () => import('./folder/grupos-detalle/grupos-detalle.module').then( m => m.GruposDetallePageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'crear-grupo/:id',
-    loadChildren: () => import('./folder/crear-grupo/crear-grupo.module').then( m => m.CrearGrupoPageModule)
+    loadChildren: () => import('./folder/crear-grupo/crear-grupo.module').then( m => m.CrearGrupoPageModule),
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'crear-publicacion-todos',
+    loadChildren: () => import('./folder/crear-publicacion-todos/crear-publicacion-todos.module').then( m => m.CrearPublicacionTodosPageModule),
+    canActivate:[AuthGuard]
   }
+
 
 
 

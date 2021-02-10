@@ -20,6 +20,7 @@ import { AlertController } from '@ionic/angular';
 export class CursoDetallePage implements OnInit {
   
   usuarios:Usuarios[] = [];
+  usuario: Usuarios = new Usuarios();
   publicaciones:PublicacionesMateria[] = [];
   nombreCurso: string;
   id:string;
@@ -43,6 +44,7 @@ export class CursoDetallePage implements OnInit {
               private router: Router,) { }
 
   ngOnInit() {
+    this.usuarioService.getUsuario( localStorage.getItem('userId')).subscribe(res => this.usuario = res)
     this.miId = localStorage.getItem('userId');
     this.activateRoute.paramMap.subscribe(paramMap => {
       console.log(paramMap)
@@ -81,7 +83,7 @@ export class CursoDetallePage implements OnInit {
   validarCurso(){
     if(this.cursosMisAyudantias.includes(this.id)){
      // this.mostrarBoton = false;//mostrar mensaje.
-      this.router.navigateByUrl("/crear-")
+      this.router.navigate(["/crear-publicacion",this.id])
 
     }
     else{
@@ -177,6 +179,8 @@ export class CursoDetallePage implements OnInit {
 
   remove(id){
      this.publicacionesService.removePublicacionesMateria(id)
+     this.usuario.Publicaciones = this.usuario.Publicaciones - 1;
+     this.usuarioService.updateUsuario(this.miId,this.usuario)
   }
 
 }
