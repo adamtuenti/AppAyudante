@@ -8,13 +8,17 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { PublicacionesMateria } from 'src/app/models/publicaciones-materia';
 import { PublicacionesService } from 'src/app/services/publicaciones.service';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { AyudantesService } from 'src/app/services/ayudantes.service';
+import { CursosService } from 'src/app/services/cursos.service';
+import { Ayudantes } from 'src/app/models/ayudantes';
+import { Cursos } from 'src/app/models/cursos';
 
 @Component({
-  selector: 'app-crear-publicacion',
-  templateUrl: './crear-publicacion.page.html',
-  styleUrls: ['./crear-publicacion.page.scss'],
+  selector: 'app-crear-publicacion-todos',
+  templateUrl: './crear-publicacion-todos.page.html',
+  styleUrls: ['./crear-publicacion-todos.page.scss'],
 })
-export class CrearPublicacionPage implements OnInit {
+export class CrearPublicacionTodosPage implements OnInit {
   public publicacion: PublicacionesMateria=new PublicacionesMateria();
   usuario: Usuarios = new Usuarios();
   loading: any;
@@ -22,7 +26,11 @@ export class CrearPublicacionPage implements OnInit {
   miId: string;
   file: File;
   imageSrc: string | ArrayBuffer;
-  constructor(
+  ayudantias:Ayudantes[]= [];
+  cursos:Cursos[]= [];
+  rol: string;
+  constructor(private ayudanteService: AyudantesService,
+    private cursosService: CursosService,
     private angularFireStorage: AngularFireStorage,
     private router: Router,
     private usuarioService: UsuarioService,
@@ -32,13 +40,11 @@ export class CrearPublicacionPage implements OnInit {
     private publicacionesService: PublicacionesService) { }
 
   ngOnInit() {
+    this.rol = localStorage.getItem('Rol');
+    this.ayudanteService.getAyudantes().subscribe(res => this.ayudantias = res);
+    this.cursosService.getCursos().subscribe(res => this.cursos = res);
     this.miId = localStorage.getItem('userId');
     this.usuarioService.getUsuario( localStorage.getItem('userId')).subscribe(res => this.usuario = res)
-    
-    this.activateRoute.paramMap.subscribe(paramMap => {
-      const id = paramMap.get('id');
-      this.id = id;
-    });
   }
 
   readURL(event): void {
@@ -60,7 +66,12 @@ export class CrearPublicacionPage implements OnInit {
     this.publicacion.Estudiante = localStorage.getItem('userId')
     this.publicacion.Fecha = fechaActual.toString();
     this.publicacion.Visitas = 0;
-    this.publicacion.Materia = this.id;
+    if(this.rol == 'Ayudante'){
+    this.publicacion.Materia = form.value.curso;}
+    if(this.rol == 'Estudiante'){
+      this.publicacion.Materia = 'Estudiante';}
+    
+    console.log(form.value.curso)
     this.publicacion.Visibilidad = true;
     this.publicacion.Rol = localStorage.getItem('Rol')
  
@@ -76,7 +87,9 @@ export class CrearPublicacionPage implements OnInit {
       data=>{
         data.ref.getDownloadURL().then(
         downloadURL => {this.registroCompleto(downloadURL)})
-        .catch(err=>{console.log('error')});
+        .catch(err=>{
+          this.loading.dismiss();
+          console.log('error')});
         }
     )     
   }
@@ -89,7 +102,7 @@ export class CrearPublicacionPage implements OnInit {
       auth=>{
         this.loading.dismiss();
 
-        this.router.navigate(["/curso-detalle",this.id,''])
+        this.router.navigate(["/publicaciones"])
       }       
     ).catch(async error => {
       this.loading.dismiss();

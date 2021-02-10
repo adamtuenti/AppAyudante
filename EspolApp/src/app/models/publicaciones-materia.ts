@@ -7,6 +7,7 @@ export class PublicacionesMateria {
     Foto: string;
     Titulo: string;
     Visitas: number;
+    Publicaciones: number;
     Rol:string;
-    
+    Visibilidad: boolean; 
 }

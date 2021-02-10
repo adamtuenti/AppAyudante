@@ -53,7 +53,7 @@
     </ion-searchbar>
 
 
-  <ion-list *ngIf="!getDatos()">
+  <ng-container *ngIf="!getDatos()">
     <ng-container *ngFor="let ayudante of ayudantes">
     <ng-container *ngIf="ayudante.Materia == id">
     <ng-container *ngFor="let usuario of usuarios | filtroUsuario: textoBuscar">
@@ -85,20 +85,34 @@
     </ng-container>
     </ng-container>
 
+  
 
-  </ion-list>
+
+  </ng-container>
 
   <ng-container *ngIf="getDatos()">
     <br><br><br><br><br><br>
-    <div class="ion-text-center">
+    <div class="ion-text-center"> 
       <ion-text color="medium">
 
-        <img src="https://plantillasdememes.com/img/plantillas/maldicion31565656254.png" style="width: 55%; height:72%;" alet="foto">
+        <img src="https://plantillasdememes.com/img/plantillas/maldicion31565656254.png" style="width: 55%; height:55%;" alet="foto">
         
         <p style="font-size: 25px;">No hay ayudantes registrados.</p>
       </ion-text>  
     </div>
+
+    <!-- <ion-fab  *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="validarCurso()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
   </ng-container>
+
+  <ion-fab  *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="validarCurso()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 
 </ion-content>
