@@ -19,9 +19,8 @@ export class PerfilPage implements OnInit {
               ) { }
 
   ngOnInit() {
-    console.log(localStorage.getItem('userId'))
-
-    this.usuarioService.getUsuario(localStorage.getItem('userId')).subscribe(res => {this.user =res; console.log(res); console.log('aqui')});
+  
+    this.usuarioService.getUsuario(localStorage.getItem('userId')).subscribe(res => {this.user =res;});
 
   }
 
