@@ -5,6 +5,9 @@ import { Ayudantes } from 'src/app/models/ayudantes';
 import { AyudantesService } from 'src/app/services/ayudantes.service';
 import { Router } from '@angular/router';
 
+import { Usuarios } from 'src/app/models/usuarios';
+import { UsuarioService } from 'src/app/services/usuario.service';
+
 
 @Component({
   selector: 'app-crear-ayudantia',
@@ -19,16 +22,19 @@ export class CrearAyudantiaPage implements OnInit {
   cursosMisAyudantias = [];
   todosCursos = [];
   nuevosCursos = [];
+  usuario: Usuarios = new Usuarios();
   
   textoBuscar='';
   public nuevoAyudante: Ayudantes=new Ayudantes();
 
   constructor(private ayudanteService: AyudantesService,
               private cursoService: CursosService,
+              private usuarioService: UsuarioService,
               private router: Router) { }
 
   ngOnInit() {
     this.miId = localStorage.getItem('userId');
+    this.usuarioService.getUsuario( localStorage.getItem('userId')).subscribe(res => this.usuario = res)
     this.ayudanteService.getAyudantes().subscribe(res => {this.ayudantias = res;this.listaCursos();this.getCursos()});
     
     
@@ -44,17 +50,10 @@ export class CrearAyudantiaPage implements OnInit {
   }
 
   llenarCursos(){
-    for (let index = 0; index < this.cursos.length; index++) {
-      
-        this.todosCursos.push(this.cursos[index].id)
-    
-      
-
+    for (let index = 0; index < this.cursos.length; index++) {      
+        this.todosCursos.push(this.cursos[index].id)    
     }
-
   }
-
-  
 
   buscar(event){
     const texto = event.target.value
@@ -105,6 +104,8 @@ export class CrearAyudantiaPage implements OnInit {
     this.nuevoAyudante.Usuario = this.miId;
     this.nuevoAyudante.Like = 0;
     this.nuevoAyudante.Dislike = 0;
+    this.usuario.Cursos =  this.usuario.Cursos + 1
+     this.usuarioService.updateUsuario(this.miId, this.usuario)
 
                 
 

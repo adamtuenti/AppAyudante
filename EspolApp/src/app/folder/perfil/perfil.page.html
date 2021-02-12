@@ -81,6 +81,11 @@
       <ion-label style="font-size: 17px;">Ser ayudante</ion-label>
     </ion-button>
 
+    <ion-button *ngIf="user.Rol == 'Ayudante' && user.Premium==false" style="width: 250px;height: 45px;" (click)="serPremium()" color="success">
+      <ion-icon name="school-outline" size="large" style="margin-right: 8px;"></ion-icon>
+      <ion-label style="font-size: 17px;">Ser premium</ion-label>
+    </ion-button>
+
     <ion-button style="width: 250px;height: 45px;margin-top:12.5px;" color="danger" (click)="logOutUser()">
       <ion-icon name="log-out-outline" size="large" style="margin-right: 8px;"></ion-icon>
       <ion-label style="font-size: 17px;">Cerrar Sesión</ion-label>

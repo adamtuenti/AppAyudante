@@ -36,6 +36,14 @@ export class PerfilPage implements OnInit {
       });
   }
 
+  serPremium(){
+    this.user.EsperaPremium = true;
+    this.usuarioService.updateUsuario(localStorage.getItem('userId'),this.user)
+      .then(res => {
+        this.failedAlert();
+      });
+  }
+
   async failedAlert() {
     const alert = await this.alertCtrt.create({
      cssClass: 'my-custom-class',

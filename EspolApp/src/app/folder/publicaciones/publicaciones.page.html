@@ -39,7 +39,13 @@
         <ion-card-header>
           <ion-item>
           <ion-card-title (click)='aumentarVisita(publicacion.id,publicacion)'>{{publicacion.Titulo}}</ion-card-title>  
-          <ion-button fill="outline" slot='end' (click)='aumentarVisita(publicacion.id,publicacion)'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
+          <!-- <ion-button fill="outline" slot='end' (click)='aumentarVisita(publicacion.id,publicacion)'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
+           -->
+
+           <ion-icon *ngIf="miId == publicacion.Estudiante" name="create-outline" slot='end'  (click)="redireccionar(publicacion.id)"></ion-icon>
+           <ion-icon *ngIf="miId == publicacion.Estudiante" name="trash-outline" slot='end' color='danger'(click)="alert(publicacion.id)"></ion-icon>
+
+
           <!-- <ng-container *ngIf="miId == publicacion.Estudiante">
             <ion-icon name="create-outline" slot='end'  (click)="redireccionar(publicacion.id)"></ion-icon>
             <ion-icon name="trash-outline" slot='end' color='danger'(click)="alert(publicacion.id)"></ion-icon>
@@ -50,13 +56,19 @@
           {{publicacion.Descripcion}}
         </ion-card-content>
 
-        <ng-container *ngIf="miId == publicacion.Estudiante">
+        <ng-container >
           <ion-item>
-            <ion-icon name="create-outline" slot='end'  (click)="redireccionar(publicacion.id)"></ion-icon>
-            <ion-icon name="trash-outline" slot='end' color='danger'(click)="alert(publicacion.id)"></ion-icon>
+
+            <label>{{publicacion.Fecha | date:'yyyy/MM/dd'}}</label>
+
+            <ion-button fill="outline" slot='end' (click)='aumentarVisita(publicacion.id,publicacion)'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
+
+           
           </ion-item>
 
         </ng-container>
+
+        
         
       </ion-card>
 
@@ -66,7 +78,10 @@
         <ion-card-header>
           <ion-item>
           <ion-card-title (click)='aumentarVisita(publicacion.id,publicacion)'>{{publicacion.Titulo}}</ion-card-title>  
-        <ion-button fill="outline" slot='end' (click)='aumentarVisita(publicacion.id,publicacion)'><ion-icon name="eye-outline" (click)='aumentarVisita(publicacion.id,publicacion)'></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
+
+          <ion-icon *ngIf="miId == publicacion.Estudiante" name="create-outline" slot='end'  (click)="redireccionar(publicacion.id)"></ion-icon>
+          <ion-icon *ngIf="miId == publicacion.Estudiante" name="trash-outline" slot='end' color='danger'(click)="alert(publicacion.id)"></ion-icon>
+
           <!-- <ng-container *ngIf="miId == publicacion.Estudiante">
             <ion-icon name="create-outline" slot='end'  (click)="redireccionar(publicacion.id)"></ion-icon>
             <ion-icon name="trash-outline" slot='end' color='danger'(click)="alert(publicacion.id)"></ion-icon>
@@ -77,10 +92,12 @@
           {{publicacion.Descripcion}}
         </ion-card-content>
 
-        <ng-container *ngIf="miId == publicacion.Estudiante">
+        <ng-container >
           <ion-item>
-            <ion-icon name="create-outline" slot='end'  (click)="redireccionar(publicacion.id)"></ion-icon>
-            <ion-icon name="trash-outline" slot='end' color='danger'(click)="alert(publicacion.id)"></ion-icon>
+            
+            <label>{{publicacion.Fecha | date:'yyyy/MM/dd'}}</label>
+            <ion-button fill="outline" slot='end' (click)='aumentarVisita(publicacion.id,publicacion)'><ion-icon name="eye-outline" (click)='aumentarVisita(publicacion.id,publicacion)'></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
+          
           </ion-item>
 
         </ng-container>
@@ -95,7 +112,7 @@
 
   
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [routerLink]="['/crear-publicacion-todos']" routerDirection="root">
+    <ion-fab-button (click) = 'validarCurso()' routerDirection="root">
      <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>

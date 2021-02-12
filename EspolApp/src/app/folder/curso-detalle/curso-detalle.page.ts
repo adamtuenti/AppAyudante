@@ -82,18 +82,79 @@ export class CursoDetallePage implements OnInit {
   }
 
   validarCurso(){
-    if(this.cursosMisAyudantias.includes(this.id)){
-     // this.mostrarBoton = false;//mostrar mensaje.
-      this.router.navigate(["/crear-publicacion",this.id])
+
+    if((this.usuario.Premium) || (this.usuario.Premium == false && this.usuario.Publicaciones < 5)){
+      if(this.cursosMisAyudantias.includes(this.id)){
+      // this.mostrarBoton = false;//mostrar mensaje.
+      //  [routerLink]="['/crear-grupo',id]"
+        this.router.navigate(["/crear-publicacion",this.id])
+      }
+      else{
+        this.failedAlert();
+      // this.router.navigate(['/crear-ayudantia'])
+      // this.mostrarBoton = true;//redireccionar a la pagina
+      }
+
+    }else{
+      this.failedAlertPremium();
+
 
     }
-    else{
-      this.failedAlert();
-     // this.router.navigate(['/crear-ayudantia'])
-     // this.mostrarBoton = true;//redireccionar a la pagina
-    }
+
+    
+  
 
   }
+
+  async failedAlertPremium() {
+    const alert = await this.alertCtrt.create({
+     cssClass: 'my-custom-class',
+     header: "Su cuenta no es premium",
+     message: "Máximo puedes realizar 5 publicaciones",
+    buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Ser premium',
+          handler: (data) => {
+            this.serPremium()
+            
+            console.log('registrar')
+          
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  serPremium(){
+    this.usuario.EsperaPremium = true;
+    this.usuarioService.updateUsuario(localStorage.getItem('userId'),this.usuario)
+      .then(res => {
+        this.failedAlertPremiunMessage();
+      });
+  }
+  async failedAlertPremiunMessage() {
+    const alert = await this.alertCtrt.create({
+     cssClass: 'my-custom-class',
+     header: "Genial!",
+     message: 'Pronto estaremos en contacto contigo por whatsapp!',
+    buttons: [{
+    text: 'OK',
+      handler: () => {
+        
+      }
+    }]   
+    });
+    await alert.present();
+  }
+
+
 
   async failedAlert() {
     const alert = await this.alertCtrt.create({

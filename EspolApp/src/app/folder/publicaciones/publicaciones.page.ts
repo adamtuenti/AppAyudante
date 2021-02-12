@@ -25,7 +25,8 @@ export class PublicacionesPage implements OnInit {
               private usuarioService: UsuarioService,
               private publicacionesService: PublicacionesService,
               private alertCtrt: AlertController,
-              private router: Router) { }
+              private router: Router,
+              ) { }
 
   ngOnInit() {
     this.usuarioService.getUsuario( localStorage.getItem('userId')).subscribe(res => this.usuario = res)
@@ -62,6 +63,79 @@ export class PublicacionesPage implements OnInit {
       this.router.navigate(['/curso-detalle-anuncio',publicacion.id]);
       console.log("ingreso")   
   }
+
+  validarCurso(){
+    if(this.usuario.Rol == 'Estudiante'){
+      this.router.navigate(["/crear-publicacion-todos"])
+    }
+
+    else if((this.usuario.Premium) || (this.usuario.Premium == false && this.usuario.Publicaciones < 5)){
+      this.router.navigate(["/crear-publicacion-todos"])
+      // this.mostrarBoton = false;//mostrar mensaje.
+      //  [routerLink]="['/crear-grupo',id]"
+        
+      
+
+
+    }else{
+      this.failedAlertPremium();
+
+
+    }
+
+    
+  
+
+  }
+
+  async failedAlertPremium() {
+    const alert = await this.alertCtrt.create({
+     cssClass: 'my-custom-class',
+     header: "Su cuenta no es premium",
+     message: "Máximo puedes realizar 5 publicaciones",
+    buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Ser premium',
+          handler: (data) => {
+            this.serPremium()
+            
+            console.log('registrar')
+          
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  serPremium(){
+    this.usuario.EsperaPremium = true;
+    this.usuarioService.updateUsuario(localStorage.getItem('userId'),this.usuario)
+      .then(res => {
+        this.failedAlertPremiunMessage();
+      });
+  }
+  async failedAlertPremiunMessage() {
+    const alert = await this.alertCtrt.create({
+     cssClass: 'my-custom-class',
+     header: "Genial!",
+     message: 'Pronto estaremos en contacto contigo por whatsapp!',
+    buttons: [{
+    text: 'OK',
+      handler: () => {
+        
+      }
+    }]   
+    });
+    await alert.present();
+  }
+
 
   
 

@@ -75,7 +75,7 @@
 </ng-container>
 
   <ion-fab *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [routerLink]="['/crear-grupo',id]">
+    <ion-fab-button (click)="validarCurso()">
      <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>

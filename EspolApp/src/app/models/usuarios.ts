@@ -14,4 +14,7 @@ export class Usuarios {
     Verificacion: boolean;
     Estado: string;
     EsperaAyudantia: boolean;
+    Anuncio: boolean;
+    EsperaPremium:boolean;
+    Cursos:number;
 }

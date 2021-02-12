@@ -25,7 +25,7 @@ export class NoLoginGuard implements CanActivate {
       }
       else{
         if(localStorage.getItem('Estado') == "A"){
-        this.router.navigateByUrl('/home');}
+        this.router.navigateByUrl('/publicaciones');}
         if(localStorage.getItem('Estado') == "P"){
           this.router.navigateByUrl('/pendiente');}
         return false;

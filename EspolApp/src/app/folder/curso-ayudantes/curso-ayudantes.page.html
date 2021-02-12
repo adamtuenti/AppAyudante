@@ -40,9 +40,6 @@
 
   </ion-segment>
 
-  
-
-<ion-content>
 
   <ion-searchbar
     color="light" 
@@ -64,7 +61,7 @@
           <img src="{{usuario.FotoPerfil}}" alet="foto">
         </ion-thumbnail>
         <ion-card-title>
-          {{usuario.Nombre}} {{usuario.Apellido}} 
+          {{usuario.Nombre}} {{usuario.Apellido}} {{desabilitar}}
         </ion-card-title>
 
           <ion-list fill="outline" slot='end'>
@@ -86,16 +83,16 @@
     </ng-container>
 
   
-
+ 
 
   </ng-container>
 
   <ng-container *ngIf="getDatos()">
-    <br><br><br><br><br><br>
-    <div class="ion-text-center"> 
+
+    <div style="margin-top: 50px;" align='center'> 
       <ion-text color="medium">
 
-        <img src="https://plantillasdememes.com/img/plantillas/maldicion31565656254.png" style="width: 55%; height:55%;" alet="foto">
+        <img src="https://plantillasdememes.com/img/plantillas/maldicion31565656254.png" style="width: 55%; height:62%;" alet="foto">
         
         <p style="font-size: 25px;">No hay ayudantes registrados.</p>
       </ion-text>  
@@ -109,8 +106,8 @@
   </ng-container>
 
   <ion-fab  *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="validarCurso()">
-      <ion-icon name="add-outline"></ion-icon>
+    <ion-fab-button disabled="{{desabilitar}}" (click)="failedAlert()">
+      <ion-icon name="person-add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 

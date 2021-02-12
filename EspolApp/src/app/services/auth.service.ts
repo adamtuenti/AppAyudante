@@ -51,6 +51,10 @@ export class AuthService {
           Rol: 'Estudiante',
           Telefono: telefono,
           Universidad: 'Espol',
+          Anuncio: true,
+          EsperaAyudantia: false,
+          EsperaPremium: false,
+          Cursos:0,
          // Verificacion: false,
           Estado: 'P',
 

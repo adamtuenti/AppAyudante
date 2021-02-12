@@ -24,6 +24,7 @@ export class CursoAyudantesPage implements OnInit {
   cursosMisAyudantias = [];
   miId;
   rol;
+  desabilitar = false;
 
   resultado = [];
   textoBuscar= '';
@@ -50,7 +51,7 @@ export class CursoAyudantesPage implements OnInit {
       
     });
 
-    this.ayudanteService.getAyudantes().subscribe(res=> this.ayudantes = res);
+    this.ayudanteService.getAyudantes().subscribe(res=> {this.ayudantes = res;this.validarCurso()});
     this.usuarioService.getUsuarios().subscribe(res => this.usuarios = res);
     
   }
@@ -101,19 +102,35 @@ export class CursoAyudantesPage implements OnInit {
   }
 
   validarCurso(){
-    if(this.cursosMisAyudantias.includes(this.id)){
-     // this.mostrarBoton = false;//mostrar mensaje.
-      this.router.navigate(["/crear-publicacion",this.id])
 
+    var numero = 0
+
+    for (let index = 0; index < this.ayudantes.length; index++) {
+      if(this.ayudantes[index].Usuario == this.miId && this.id == this.ayudantes[index].Materia){
+        numero = numero + 1
+       // return true
+       // break;
+       
+      
+      }
+    }
+    if(numero==0){
+      this.desabilitar = false;
     }
     else{
-      this.failedAlert();
-     // this.router.navigate(['/crear-ayudantia'])
-     // this.mostrarBoton = true;//redireccionar a la pagina
+      this.desabilitar = true;
     }
+     //this.failedAlert();
+   // console.log("no existo")
+   // return false;
 
   }
 
+  agregarCurso(){
+
+  }
+
+  
   async failedAlert() {
     const alert = await this.alertCtrt.create({
      cssClass: 'my-custom-class',

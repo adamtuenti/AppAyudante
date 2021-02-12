@@ -36,8 +36,8 @@ export class SugerenciasPage implements OnInit {
   async failedAlert() {
     const alert = await this.alertCtrt.create({
      cssClass: 'my-custom-class',
-     header: "Muchas gracias por su sugerencia!",
-     message: "Su sugerencia la tomaremos en cuenta en una nueva actualización.",
+     header: "Gracias por su sugerencia!",
+    //  message: "Su sugerencia la tomaremos en cuenta en una nueva actualización.",
     buttons: [{
     text: 'OK',
       handler: () => {
