@@ -67,11 +67,28 @@
         <img src="{{grupo.Imagen}}" alet="foto">
       </ion-thumbnail>
       <ion-card-title>{{grupo.Nombre}}</ion-card-title>
+
+      <ion-icon *ngIf="miId == grupo.Usuario" name="create-outline" slot='end'  (click)="redireccionar(grupo.id)"></ion-icon>
+      <ion-icon *ngIf="miId ==  grupo.Usuario" name="trash-outline" slot='end' color='danger'(click)="alert(grupo.id)"></ion-icon>
+
     </ion-item>
   
 
     </ion-card>
 
+
+</ng-container>
+
+<ng-container *ngIf="getDatos()">
+
+  <div style="margin-top: 50px;" align='center'> 
+    <ion-text color="medium">
+
+      <img src="http://assets.stickpng.com/images/5c3cad1be39d5d01c21da885.png" style="width: 55%; height:58%;margin:auto;" alet="foto">
+      
+      <p style="font-size: 21px;margin:auto;margin-top:7.5px">No hay grupos registrados.</p>
+    </ion-text>  
+  </div>
 </ng-container>
 
   <ion-fab *ngIf="rol=='Ayudante'" vertical="bottom" horizontal="end" slot="fixed">

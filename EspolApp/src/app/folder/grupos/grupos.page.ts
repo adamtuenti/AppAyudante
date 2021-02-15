@@ -56,6 +56,16 @@ export class GruposPage implements OnInit {
     this.rol = localStorage.getItem('Rol')
   }
 
+  getDatos(){
+    for(let i= 0; i<this.grupos.length; i++){
+      if(this.grupos[i].Materia == this.id){     
+            return false;      
+      }
+    }
+    return true;
+  }
+
+
   listaCursos(){
     console.log('id: ',this.id)
     for (let index = 0; index < this.ayudantias.length; index++) {
@@ -173,52 +183,33 @@ export class GruposPage implements OnInit {
     await alert.present();
   }
 
-  // async crearGrupo() {
+  
+  async alert(id) {
+    const alert = await this.alertCtrt.create({
+     cssClass: 'my-custom-class',
+     header: "¿Desea eliminar este grupo?",
+    buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, 
+        {
+          text: 'Elminar',
+          handler: (data) => {
+            this.remove(id)                  
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
-  //   const alert = await this.alertCtrt.create({
-  //     cssClass: 'my-custom-class',
-  //     header: 'Sugerir curso:',
-      
-  //     // message: 'Nombre del curso:',
-  //     inputs: [
-  //       {
-  //         name: 'curso',
-  //         placeholder: 'Nombre del curso',
-  //         type: 'text'
-          
-  //       }
-  //     ],
-
-  //     buttons: [
-  //       {
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         cssClass: 'secondary',
-  //         handler: (blah) => {
-  //          // console.log('Confirm Cancel: blah');
-  //         }
-  //       }, {
-  //         text: 'Ok',
-  //         handler: (data) => {
-  //           if(data.curso != ""){
-  //             this.agregarSolitiud(data.curso)
-  //           }else if(data.curso== ""){
-              
-  //             // this.failedAlert("El campo email es requerido");
-  //           }
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   await alert.present();
-  // }
-
-  // agregarSolitiud(curso:string){
-  //   this.materia.Estado = true;
-  //   this.materia.NombreMateria = curso;
-  //   this.materia.Usuario = this.userId;
-  //   this.materiaService.addMateria(this.materia);
-
-  // }
+  remove(id){
+    this.grupoService.removeGrupo(id)
+  }
 
 }

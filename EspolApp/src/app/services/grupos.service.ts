@@ -36,6 +36,14 @@ export class GruposService {
       return this.gruposCollection.add({...Grupos});
     }
 
+     updateGrupo(id:string, Grupos:Grupos){
+      return this.gruposCollection.doc(id).update({...Grupos});
+    }
+  
+    removeGrupo(id:string){
+      return this.gruposCollection.doc(id).delete();
+   }
+
 
 
 
