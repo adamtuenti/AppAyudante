@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { ComentariosUsuarioPageRoutingModule } from './comentarios-usuario-routing.module';
 
 import { ComentariosUsuarioPage } from './comentarios-usuario.page';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   imports: [
+    PipesModule,
     CommonModule,
     FormsModule,
     IonicModule,
