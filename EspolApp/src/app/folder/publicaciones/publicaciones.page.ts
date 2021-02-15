@@ -7,6 +7,8 @@ import { AlertController } from '@ionic/angular';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
+
+
 @Component({
   selector: 'app-publicaciones',
   templateUrl: './publicaciones.page.html',
@@ -20,6 +22,7 @@ export class PublicacionesPage implements OnInit {
   miId:string;
   rol;
   textoBuscar='';
+  //probar: PublicacionesMateria[] = [];
 
   constructor(private activateRoute: ActivatedRoute,
               private usuarioService: UsuarioService,
@@ -36,8 +39,11 @@ export class PublicacionesPage implements OnInit {
     this.rol = localStorage.getItem('Rol')
 
     this.publicacionesService.getPublicacionesMateria().subscribe(res=> this.publicaciones = res);
+    //this.publicacionesService.probar().subscribe(res=>this.probar = res);
+ 
     
-  } 
+  }
+
 
   redireccionar(id){
     this.router.navigate(['/editar-publicacion',id,"Publicacion"])

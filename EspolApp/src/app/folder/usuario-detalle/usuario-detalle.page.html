@@ -86,7 +86,7 @@
     
   </ion-card>
 
-  <div align="center">
+  <div align="center" *ngIf="myId!=id">
 
     <ion-button disabled = "{{click}}" color = "primary" fill="outline" style="height: 45px;" (click)="like()">
       <ion-icon size="large" name="thumbs-up-outline" ></ion-icon>

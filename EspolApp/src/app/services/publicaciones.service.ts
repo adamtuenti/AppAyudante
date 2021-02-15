@@ -17,8 +17,12 @@ export class PublicacionesService {
     private publicacionesMateriaCollection: AngularFirestoreCollection <PublicacionesMateria>;
     private publicacionesMateria: Observable<PublicacionesMateria[]>;
 
+   //private probar1: AngularFirestore <PublicacionesMateria>;
+
     constructor(firestore: AngularFirestore) {
       this.publicacionesCollection = firestore.collection('PublicacionesGenerales');
+
+      //this.probar1 = firestore.collection('Publicaciones'.where("Visibilidad", "==", true).get();
       this.publicaciones = this.publicacionesCollection.snapshotChanges().pipe(map(
         actions =>{
           return actions.map( a=>{
@@ -62,7 +66,11 @@ export class PublicacionesService {
   
     removePublicaciones(id:string){
       return this.publicacionesCollection.doc(id).delete();
-   }
+    }
+
+    // probar(){
+    //   return this.probar1;
+    // }
 
 
 
