@@ -40,30 +40,43 @@
         <ion-label>Datos</ion-label>
         </ion-segment-button>
         
-        <ion-segment-button value="comentarios" [routerLink]="['/comentarios-usuario',id,idMateria]" routerDirection="root">
+        <ion-segment-button value="comentarios" [routerLink]="['/comentarios-usuario', idMateria, id]" routerDirection="root">
           <ion-icon name="chatbubbles-outline" size="large"></ion-icon> <ion-label>Comentarios</ion-label>
         </ion-segment-button>
         
       </ion-segment>
     
     </ion-toolbar>
+    <ion-searchbar
+    color="light" 
+    placeholder = "Buscar curso..."
+    animated
+
+    (ionChange)="buscar($event)">
+    </ion-searchbar>
 
 
-  <ng-container *ngFor="let comentario of comentarios">
-  <ng-container *ngIf="comentario.Materia == idMateria && comentario.Ayudante == idAyudante">
-  <ng-container *ngFor="let usuario of usuarios">
+  <ng-container *ngFor="let comentario of comentarios  | filtroComentarios: textoBuscar" >
+    <ng-container *ngIf="comentario.Materia == idMateria && comentario.Ayudante == id">
+      <ng-container *ngFor="let usuario of usuarios">
 
-  <ion-card *ngIf="usuario.id == comentario.Estudiante">   
-    <ion-item style="margin-top: 7.5px;">
-      <ion-icon name="person-outline" size="large" color="success" style="margin-right: 8px;"></ion-icon>
-      <ion-label>{{comentario.Comentario}}</ion-label>
-    </ion-item>    
-  </ion-card>
+        <ion-card *ngIf="usuario.id == comentario.Estudiante"> 
+          <ion-avatar>
+            <img src="{{usuario.FotoPerfil}}">
+          </ion-avatar>  
+          <ion-item style="margin-top: 7.5px;">
+            <ion-label>{{comentario.Comentario}}</ion-label>
+          </ion-item>    
+        </ion-card>
 
+      </ng-container>
+    </ng-container>
   </ng-container>
-  </ng-container>
-  </ng-container>
 
-
+  <ion-fab *ngIf="id != miID" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="crearComentario()">
+     <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   
 </ion-content>

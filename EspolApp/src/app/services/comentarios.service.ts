@@ -13,7 +13,7 @@ export class ComentariosService {
   private Comentarios: Observable<Comentarios[]>;
 
   constructor(firestore: AngularFirestore) {
-    this.ComentariosCollection = firestore.collection('Grupos');
+    this.ComentariosCollection = firestore.collection('Comentarios');
     this.Comentarios = this.ComentariosCollection.snapshotChanges().pipe(map(
       actions =>{
         return actions.map( a=>{
