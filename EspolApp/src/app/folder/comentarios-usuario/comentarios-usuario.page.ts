@@ -28,6 +28,8 @@ export class ComentariosUsuarioPage implements OnInit {
       this.idMateria = paramMap.get('idMateria');
       this.idAyudante = paramMap.get('idAyudante');
     });
+    console.log('ayudante: ',this.idAyudante)
+    console.log('materia: ',this.idMateria)
     this.usuarioService.getUsuarios().subscribe(res => this.usuarios = res);
     this.comentariosService.getComentarios().subscribe(res =>{this.comentarios = res})
     
