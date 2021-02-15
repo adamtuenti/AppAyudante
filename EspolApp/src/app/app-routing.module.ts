@@ -157,7 +157,7 @@ const routes: Routes = [
     loadChildren: () => import('./folder/comentarios-usuario/comentarios-usuario.module').then( m => m.ComentariosUsuarioPageModule)
   },
   {
-    path: 'mis-comentarios',
+    path: 'mis-comentarios/:idMateria',
     loadChildren: () => import('./folder/mis-comentarios/mis-comentarios.module').then( m => m.MisComentariosPageModule)
   },
   {

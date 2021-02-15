@@ -44,7 +44,7 @@
   <ng-container *ngFor="let ayudante of ayudantias">
     <ng-container *ngIf="ayudante.Usuario == id">
       <ng-container *ngFor="let curso of cursos | filtroCurso: textoBuscar">
-        <ion-card *ngIf="ayudante.Materia == curso.id" scrollable class = "item">
+        <ion-card *ngIf="ayudante.Materia == curso.id" scrollable class = "item" [routerLink]="['/mis-comentarios', curso.id]">
           <ion-item >
       
             <ion-thumbnail slot="start" slot="start">

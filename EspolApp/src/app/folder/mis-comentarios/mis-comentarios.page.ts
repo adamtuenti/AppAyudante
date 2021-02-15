@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Comentarios } from 'src/app/models/comentarios';
+import { ComentariosService } from 'src/app/services/comentarios.service';
+import { Usuarios } from 'src/app/models/usuarios';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { AlertController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mis-comentarios',
@@ -6,10 +12,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mis-comentarios.page.scss'],
 })
 export class MisComentariosPage implements OnInit {
-
-  constructor() { }
+  comentarios: Comentarios[]=[];
+  public comentario: Comentarios=new Comentarios();
+  textoBuscar='';
+  idMateria: string;
+  miID: string;
+  usuarios:Usuarios[] = [];
+  constructor(private activateRoute: ActivatedRoute,
+              public comentariosService: ComentariosService,
+              private usuarioService: UsuarioService,
+              private alertCtrt: AlertController) { }
 
   ngOnInit() {
+    this.miID = localStorage.getItem('userId')
+    this.activateRoute.paramMap.subscribe(paramMap => {
+      this.idMateria = paramMap.get('idMateria');
+     
+    });
+    this.usuarioService.getUsuarios().subscribe(res => this.usuarios = res);
+    this.comentariosService.getComentarios().subscribe(res =>this.comentarios = res);
+    
   }
-
 }
