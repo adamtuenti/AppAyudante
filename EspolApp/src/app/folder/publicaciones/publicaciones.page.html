@@ -32,6 +32,34 @@
 
     (ionChange)="buscar($event)">
     </ion-searchbar>
+  
+  <ng-container style="border-color:yellow;background-color:teal">
+    <ion-card  *ngIf="publicidad.Mostrar" style="border-color:yellow;background-color:#FDF897" (click)='aumentarVisitaPublicidad(publicidad.id,publicidad)'>         
+      <ion-card-header>
+        <ion-item>
+        <ion-card-title >{{publicidad.Titulo}}</ion-card-title>  
+        <!-- <ion-button fill="outline" slot='end' (click)='aumentarVisita(publicacion.id,publicacion)'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicacion.Visitas}}</label></ion-button>
+         -->
+
+
+        <!-- <ng-container *ngIf="miId == publicacion.Estudiante">
+          <ion-icon name="create-outline" slot='end'  (click)="redireccionar(publicacion.id)"></ion-icon>
+          <ion-icon name="trash-outline" slot='end' color='danger'(click)="alert(publicacion.id)"></ion-icon>
+        </ng-container> -->
+      </ion-item>
+      </ion-card-header>
+      <ion-card-content (click)='aumentarVisita(publicacion.id,publicacion)'>
+        {{publicidad.Descripcion}}
+      </ion-card-content>
+
+      <ng-container >
+        <ion-item>
+          <ion-button fill="outline" slot='end'><ion-icon name="eye-outline" ></ion-icon><label style="font-size: 12;margin-left: 7.5px;" >{{publicidad.Visitas}}</label></ion-button>
+         
+        </ion-item>
+      </ng-container>
+    </ion-card>
+  </ng-container>
 
   <ng-container *ngIf="!getDatos()">
     <ng-container *ngFor="let publicacion of publicaciones | filtroAnuncio: textoBuscar">

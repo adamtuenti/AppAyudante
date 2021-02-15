@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { Publicidad } from 'src/app/models/publicidad';
+import { PublicidadService } from 'src/app/services/publicidad.service';
 
 
 
@@ -22,6 +24,7 @@ export class PublicacionesPage implements OnInit {
   miId:string;
   rol;
   textoBuscar='';
+  publicidad: Publicidad = new Publicidad();
   //probar: PublicacionesMateria[] = [];
 
   constructor(private activateRoute: ActivatedRoute,
@@ -29,6 +32,7 @@ export class PublicacionesPage implements OnInit {
               private publicacionesService: PublicacionesService,
               private alertCtrt: AlertController,
               private router: Router,
+              private publicidadService: PublicidadService,
               ) { }
 
   ngOnInit() {
@@ -39,6 +43,7 @@ export class PublicacionesPage implements OnInit {
     this.rol = localStorage.getItem('Rol')
 
     this.publicacionesService.getPublicacionesMateria().subscribe(res=> this.publicaciones = res);
+    this.publicidadService.getPublicidad().subscribe(res=> {this.publicidad = res[0];console.log(res[0])});
     //this.publicacionesService.probar().subscribe(res=>this.probar = res);
  
     
@@ -63,11 +68,20 @@ export class PublicacionesPage implements OnInit {
 
   aumentarVisita(id:string,publicacion:PublicacionesMateria){
     publicacion.Visitas= publicacion.Visitas + 1
-    console.log("fff", publicacion.Visitas)
+    //console.log("fff", publicacion.Visitas)
     //[routerLink]="['/curso-detalle-anuncio',publicacion.id]"
     this.publicacionesService.updatePublicacionesMateria(id,publicacion)
       this.router.navigate(['/curso-detalle-anuncio',publicacion.id]);
       console.log("ingreso")   
+  }
+
+  aumentarVisitaPublicidad(id:string,publicidad:Publicidad){
+    publicidad.Visitas= publicidad.Visitas + 1
+    //console.log("fff", publicidad.Visitas)
+    //[routerLink]="['/detalle-publicidad',publicacion.id]"
+    this.publicidadService.updatePublicidad(id,publicidad)
+    this.router.navigate(['/detalle-publicidad',publicidad.id]);
+    console.log("ingreso")   
   }
 
   validarCurso(){
