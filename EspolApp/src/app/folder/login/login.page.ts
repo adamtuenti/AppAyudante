@@ -11,6 +11,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Usuarios } from 'src/app/models/usuarios';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
+import { MensajeErrorService } from 'src/app/services/mensaje-error.service'
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -23,7 +26,8 @@ export class LoginPage implements OnInit {
               private router: Router,
               private usuarioService: UsuarioService,
               private alertCtrt: AlertController,
-              private firestore: AngularFirestore) { 
+              private firestore: AngularFirestore,
+              private mensajeErrorService: MensajeErrorService,) { 
                 
   }
 
@@ -62,11 +66,14 @@ export class LoginPage implements OnInit {
     },
       
       async error => {
+        var mensaje=error.code.split('/')[1]
+        const presentarMensaje = this.mensajeErrorService.AuthErrorCodeSpanish(mensaje);
         const alert = await this.alertCtrt.create({
-          message: "Algo salio mal, intentelo de nuevo",
+          message: presentarMensaje,
           buttons:[{text: 'ok', role: 'cancel'}],      
         });
         await alert.present();
+       
       }
     )
   }

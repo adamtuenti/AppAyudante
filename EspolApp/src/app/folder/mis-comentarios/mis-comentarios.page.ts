@@ -33,4 +33,15 @@ export class MisComentariosPage implements OnInit {
     this.comentariosService.getComentarios().subscribe(res =>this.comentarios = res);
     
   }
+
+  getDatos(){
+    for(let i= 0; i<this.comentarios.length; i++){
+      if(this.comentarios[i].Materia == this.idMateria && this.comentarios[i].Ayudante == this.miID){     
+            return false;      
+      }
+    }
+    return true;
+  }
+
+  
 }

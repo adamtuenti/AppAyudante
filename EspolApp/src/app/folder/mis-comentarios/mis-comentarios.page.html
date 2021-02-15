@@ -39,25 +39,54 @@
 
   <ng-container *ngFor="let comentario of comentarios  | filtroComentarios: textoBuscar" >
     <ng-container *ngIf="comentario.Materia == idMateria && comentario.Ayudante == miID">
-  
-      <ion-card  *ngFor="let usuario of usuarios"> 
-
+     <ng-container *ngFor="let usuario of usuarios">
+      <ion-card *ngIf="usuario.id == comentario.Estudiante">
+        <ion-card-header>
           <ion-item>
             <ion-avatar>
               <img src="{{usuario.FotoPerfil}}">
-            </ion-avatar>  
-            <ion-item style="margin-top: 7.5px;">
-              <ion-label>{{comentario.Comentario}}</ion-label>
-            </ion-item>
+            </ion-avatar>
+            
+            <ion-label style="margin-left: 7.5px;">{{usuario.Nombre}} {{usuario.Apellido}}</ion-label>
+            
 
-         
+           
           </ion-item>
-             
-        </ion-card>
 
+        </ion-card-header>
+
+        
+          <!-- <ion-item style="margin-top: 7.5px;">
+            
+          </ion-item> -->
+        <ion-card-content>
+   
+            <ion-label>{{comentario.Comentario}}</ion-label>
+
+     
+        </ion-card-content>
+        
+        
+           
+      </ion-card>
+
+
+      </ng-container>
      
     </ng-container>
   </ng-container>
+
+
+  <ng-container *ngIf="getDatos()">
+
+    <div style="margin-top: 50px;" align='center'> 
+      <ion-text color="medium">
+
+        <img src="https://s03.s3c.es/imag/_v2/ecodiario/cultura/225x250/shinchan.jpg" style="width: 55%; height:62%;" alet="foto">
+        
+        <p style="font-size: 21px;">No hay comentarios registrados.</p>
+      </ion-text>  
+    </div>
+  </ng-container>
  
 </ion-content>
-

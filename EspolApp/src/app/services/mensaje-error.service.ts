@@ -15,7 +15,7 @@ export class MensajeErrorService {
     }else if(description == "operation-not-allowed"){
       return "Operación no permitida"
     }else if(description == "invalid-email"){
-      return "Correo electrónico no valido"
+      return "Correo electrónico no válido"
     }else if(description == "wrong-password"){
       return "Contraseña incorrecta"
     }else if(description == "user-not-found"){
@@ -24,7 +24,7 @@ export class MensajeErrorService {
       return "Promblema al intentar conectar al servidor"
     }
     else if(description == "weak-password"){
-      return "Contraseña muy debil o no válida"
+      return "Contraseña muy débil o no válida"
     }else if(description == "missing-email"){
       return "Hace falta registrar un correo electrónico"
     }else if(description == "internal-error"){

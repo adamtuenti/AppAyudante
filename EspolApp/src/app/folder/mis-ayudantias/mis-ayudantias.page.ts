@@ -122,6 +122,17 @@ export class MisAyudantiasPage implements OnInit {
     });
     await alert.present();
   }
+
+  getDatos(){
+    for(let i= 0; i<this.ayudantias.length; i++){
+      if(this.ayudantias[i].Usuario == this.id){     
+            return false;      
+      }
+    }
+    return true;
+  }
+
+  
   serPremium(){
     this.usuario.EsperaPremium = true;
     this.usuarioService.updateUsuario(localStorage.getItem('userId'),this.usuario)
