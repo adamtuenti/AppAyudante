@@ -38,7 +38,7 @@ export class ComentariosUsuarioPage implements OnInit {
   async alert(id) {
     const alert = await this.alertCtrt.create({
      cssClass: 'my-custom-class',
-     header: "¿Desea eliminar est comentario?",
+     header: "¿Desea eliminar este comentario?",
     buttons: [
         {
           text: 'Cancelar',
@@ -67,13 +67,13 @@ export class ComentariosUsuarioPage implements OnInit {
 
     const alert = await this.alertCtrt.create({
       cssClass: 'my-custom-class',
-      header: 'Sugerir curso:',
+      header: 'Agregar comentario:',
       
       // message: 'Nombre del curso:',
       inputs: [
         {
           name: 'curso',
-          placeholder: 'Nombre del curso',
+          placeholder: 'Comentario...',
           type: 'text'
           
         }
