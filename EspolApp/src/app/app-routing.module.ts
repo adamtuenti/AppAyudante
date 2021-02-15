@@ -154,16 +154,25 @@ const routes: Routes = [
   },
   {
     path: 'comentarios-usuario/:idMateria/:idAyudante',
-    loadChildren: () => import('./folder/comentarios-usuario/comentarios-usuario.module').then( m => m.ComentariosUsuarioPageModule)
+    loadChildren: () => import('./folder/comentarios-usuario/comentarios-usuario.module').then( m => m.ComentariosUsuarioPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'mis-comentarios/:idMateria',
-    loadChildren: () => import('./folder/mis-comentarios/mis-comentarios.module').then( m => m.MisComentariosPageModule)
+    loadChildren: () => import('./folder/mis-comentarios/mis-comentarios.module').then( m => m.MisComentariosPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'detalle-publicidad/:id',
-    loadChildren: () => import('./folder/detalle-publicidad/detalle-publicidad.module').then( m => m.DetallePublicidadPageModule)
+    loadChildren: () => import('./folder/detalle-publicidad/detalle-publicidad.module').then( m => m.DetallePublicidadPageModule),
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'editar-grupo/:id',
+    loadChildren: () => import('./folder/editar-grupo/editar-grupo.module').then( m => m.EditarGrupoPageModule),
+    canActivate:[AuthGuard]
   }
+
 
 
 ];

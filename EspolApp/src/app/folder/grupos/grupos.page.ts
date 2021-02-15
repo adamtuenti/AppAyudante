@@ -73,11 +73,11 @@ export class GruposPage implements OnInit {
         this.cursosMisAyudantias.push(this.ayudantias[index].Materia)
       }
       
-
     }
-    
-    
 
+  }
+  redireccionar(id){
+    this.router.navigate(["/editar-grupo",id])
   }
 
   buscar(event){

@@ -61,12 +61,12 @@
   
 
   <ion-card  *ngIf="id==grupo.Materia" scrollable class = "item">
-    <ion-item [routerLink]="['/grupos-detalle',grupo.id]" >
+    <ion-item >
 
-      <ion-thumbnail slot="start" slot="start">
+      <ion-thumbnail slot="start" slot="start" [routerLink]="['/grupos-detalle',grupo.id]">
         <img src="{{grupo.Imagen}}" alet="foto">
       </ion-thumbnail>
-      <ion-card-title>{{grupo.Nombre}}</ion-card-title>
+      <ion-card-title [routerLink]="['/grupos-detalle',grupo.id]">{{grupo.Nombre}}</ion-card-title>
 
       <ion-icon *ngIf="miId == grupo.Usuario" name="create-outline" slot='end'  (click)="redireccionar(grupo.id)"></ion-icon>
       <ion-icon *ngIf="miId ==  grupo.Usuario" name="trash-outline" slot='end' color='danger'(click)="alert(grupo.id)"></ion-icon>
