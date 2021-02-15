@@ -86,8 +86,15 @@ export class LoginPage implements OnInit {
 
 
   async goToReset(email){
-    this.authService.resetPassword(email);
-    this.failedAlert("Se ha enviado un enlace para restaurar su contraseña al email: "+ email);
+    this.authService.resetPassword(email).then(
+      (res)=>{   
+        this.failedAlert("Se ha enviado un enlace al correo para restaurar su contraseña: "+ email);
+      },async error => {
+        var mensaje=error.code.split('/')[1]
+        const presentarMensaje = this.mensajeErrorService.AuthErrorCodeSpanish(mensaje);
+        this.failedAlert(presentarMensaje);
+      } 
+    )
   }
   
   async presentResetPassword() {
@@ -136,7 +143,7 @@ export class LoginPage implements OnInit {
     buttons: [{
     text: 'OK',
       handler: () => {
-        this.presentResetPassword();
+        //this.presentResetPassword();
       }
     }]   
     });

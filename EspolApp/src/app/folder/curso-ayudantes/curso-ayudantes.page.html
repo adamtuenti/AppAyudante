@@ -57,9 +57,13 @@
       
       <ion-item *ngIf="usuario.id == ayudante.Usuario" (click)='aumentarVisita(ayudante.id,ayudante)'>
 
-        <ion-thumbnail slot="start" slot="start">
+        <ion-avatar slot="start">
+          <img src="{{usuario.FotoPerfil}}">
+        </ion-avatar>
+
+        <!-- <ion-thumbnail slot="start" slot="start">
           <img src="{{usuario.FotoPerfil}}" alet="foto">
-        </ion-thumbnail>
+        </ion-thumbnail> -->
         <ion-card-title>
           {{usuario.Nombre}} {{usuario.Apellido}}
         </ion-card-title>
