@@ -155,7 +155,15 @@ const routes: Routes = [
   {
     path: 'comentarios-usuario/:idAyudante/:idMateria',
     loadChildren: () => import('./folder/comentarios-usuario/comentarios-usuario.module').then( m => m.ComentariosUsuarioPageModule)
+  },  {
+    path: 'comentario-crear',
+    loadChildren: () => import('./folder/comentario-crear/comentario-crear.module').then( m => m.ComentarioCrearPageModule)
+  },
+  {
+    path: 'comentario-editar',
+    loadChildren: () => import('./folder/comentario-editar/comentario-editar.module').then( m => m.ComentarioEditarPageModule)
   }
+
 
 
 
