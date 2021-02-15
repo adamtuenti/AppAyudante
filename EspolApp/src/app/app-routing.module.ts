@@ -151,7 +151,12 @@ const routes: Routes = [
     path: 'crear-publicacion-todos',
     loadChildren: () => import('./folder/crear-publicacion-todos/crear-publicacion-todos.module').then( m => m.CrearPublicacionTodosPageModule),
     canActivate:[AuthGuard]
+  },
+  {
+    path: 'comentarios-usuario/:idAyudante/:idMateria',
+    loadChildren: () => import('./folder/comentarios-usuario/comentarios-usuario.module').then( m => m.ComentariosUsuarioPageModule)
   }
+
 
 
 

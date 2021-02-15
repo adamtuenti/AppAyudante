@@ -36,7 +36,7 @@
 
 
     
-      <ion-segment color="tertiary" value="datos">
+      <ion-segment color="tertiary" value="comentarios">
     
     
     
@@ -59,18 +59,6 @@
     
     </ion-toolbar>
 
-  <!-- <ion-segment color="tertiary" value="anuncio">
-
-    <ion-segment-button value="anuncios" layout="icon-start" [routerLink]="['/curso-detalle',id, nombreCurso]" routerDirection="root">
-      <ion-icon name="megaphone-outline" size="large"></ion-icon> <ion-label>Anuncios</ion-label>
-    </ion-segment-button>
-    
-    <ion-segment-button value="ayudantes" layout="icon-start"  [routerLink]="['/curso-ayudantes',id, nombreCurso]" routerDirection="root">
-      <ion-icon name="people-outline" size="large"></ion-icon> <ion-label>Ayudantes</ion-label>
-    </ion-segment-button>
-
-   
-  </ion-segment> -->
 
 
   <ion-card>
@@ -115,23 +103,8 @@
 
   <div align="center" *ngIf="myId!=id">
 
-    <ion-button disabled = "{{click}}" color = "primary" fill="outline" style="height: 45px;" (click)="like()">
-      <ion-icon size="large" name="thumbs-up-outline" ></ion-icon>
-    </ion-button>
-    <ion-button disabled = "{{click}}" color="danger" style="margin-left: 5.5px;height: 45px;" fill="outline"  (click)="dislike()">
-      <ion-icon size="large" name="thumbs-down-outline" ></ion-icon>
-    </ion-button>
+  
 
   </div>
   
 </ion-content>
-<style>
-  ion-img {     
-    width: 35%;
-    height: 21%;
-    margin: auto;
-    display: block;
-    border-radius: 10px;
-    border-color: aquamarine;
-  }
-</style>
