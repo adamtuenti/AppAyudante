@@ -137,29 +137,36 @@ const routes: Routes = [
     loadChildren: () => import('./folder/grupos/grupos.module').then( m => m.GruposPageModule),
     canActivate:[AuthGuard]
   },
+
   {
     path: 'grupos-detalle/:id',
     loadChildren: () => import('./folder/grupos-detalle/grupos-detalle.module').then( m => m.GruposDetallePageModule),
     canActivate:[AuthGuard]
   },
+
   {
     path: 'crear-grupo/:id',
     loadChildren: () => import('./folder/crear-grupo/crear-grupo.module').then( m => m.CrearGrupoPageModule),
     canActivate:[AuthGuard]
   },
+
   {
     path: 'crear-publicacion-todos',
     loadChildren: () => import('./folder/crear-publicacion-todos/crear-publicacion-todos.module').then( m => m.CrearPublicacionTodosPageModule),
     canActivate:[AuthGuard]
   },
+
   {
     path: 'comentarios-usuario/:idMateria/:idAyudante',
-    loadChildren: () => import('./folder/comentarios-usuario/comentarios-usuario.module').then( m => m.ComentariosUsuarioPageModule)
-  },  {
-    path: 'mis-comentarios',
-    loadChildren: () => import('./folder/mis-comentarios/mis-comentarios.module').then( m => m.MisComentariosPageModule)
-  }
+    loadChildren: () => import('./folder/comentarios-usuario/comentarios-usuario.module').then( m => m.ComentariosUsuarioPageModule),
+    canActivate:[AuthGuard]
+  },
 
+  {
+    path: 'mis-comentarios/:idMateria',
+    loadChildren: () => import('./folder/mis-comentarios/mis-comentarios.module').then( m => m.MisComentariosPageModule),
+    canActivate:[AuthGuard]
+  }
 
 ];
 
