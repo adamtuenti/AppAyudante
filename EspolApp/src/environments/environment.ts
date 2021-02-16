@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyDseqTP8YLgXbQFqVH_5VGw-vRy8E_AiIQ",
-    authDomain: "backend-b4105.firebaseapp.com",
-    databaseURL: "https://backend-b4105-default-rtdb.firebaseio.com",
-    projectId: "backend-b4105",
-    storageBucket: "backend-b4105.appspot.com",
-    messagingSenderId: "826810002353",
-    appId: "1:826810002353:web:6ba32a8967771e2e582b90",
-    measurementId: "G-72K5N77Y8V"
+    apiKey: "AIzaSyClFkBgsue70GOP1pmj0jE12KOK7FdoDVM",
+    authDomain: "taskyapp01.firebaseapp.com",
+    databaseURL: "https://taskyapp01-default-rtdb.firebaseio.com",
+    projectId: "taskyapp01",
+    storageBucket: "taskyapp01.appspot.com",
+    messagingSenderId: "896305111425",
+    appId: "1:896305111425:web:7a6e5e66aeacdc0b718880",
+    measurementId: "G-5ZKQ3R8JP4"
   }
 };
 
